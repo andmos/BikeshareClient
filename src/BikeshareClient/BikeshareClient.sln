@@ -1,7 +1,9 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikeshareClient", "BikeshareClient\BikeshareClient.csproj", "{9D88906B-8119-4940-9D8F-4A89C87859BE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBikeshareClient", "TestBikeshareClient\TestBikeshareClient.csproj", "{9538C81F-A062-4B84-B45E-818416648405}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikeshareClient", "BikeshareClient\BikeshareClient.csproj", "{F0B52071-A1A2-47E1-B40E-889DBB233C7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,9 +11,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9D88906B-8119-4940-9D8F-4A89C87859BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D88906B-8119-4940-9D8F-4A89C87859BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D88906B-8119-4940-9D8F-4A89C87859BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9D88906B-8119-4940-9D8F-4A89C87859BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9538C81F-A062-4B84-B45E-818416648405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9538C81F-A062-4B84-B45E-818416648405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9538C81F-A062-4B84-B45E-818416648405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9538C81F-A062-4B84-B45E-818416648405}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0B52071-A1A2-47E1-B40E-889DBB233C7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0B52071-A1A2-47E1-B40E-889DBB233C7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0B52071-A1A2-47E1-B40E-889DBB233C7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0B52071-A1A2-47E1-B40E-889DBB233C7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
