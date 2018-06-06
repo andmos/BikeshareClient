@@ -7,8 +7,11 @@ namespace BikeshareClient.DTO
 {
 	internal class StationStatusDTO
     {
-        public StationStatusDTO()
+        public StationStatusDTO(int lastUpdated, int timeToLive, StationStatusData stationStatusData)
         {
+            LastUpdated = lastUpdated;
+            TimeToLive = timeToLive;
+            StationsStatus = stationStatusData; 
         }
 
 		[JsonProperty("last_updated")]
