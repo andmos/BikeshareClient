@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using BikeshareClient.DTO;
-using BikeshareClient.Helpers;
 using BikeshareClient.models;
 using Newtonsoft.Json;
 

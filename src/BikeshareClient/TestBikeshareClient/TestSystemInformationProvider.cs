@@ -1,7 +1,7 @@
 using System.Net.Http;
 using BikeshareClient.models;
 using Xunit;
-using BikeshareClient.Helpers;
+
 using BikeshareClient.Providers;
 
 namespace TestBikeshareClient
