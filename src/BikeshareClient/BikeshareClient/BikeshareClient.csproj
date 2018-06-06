@@ -6,7 +6,8 @@
 
   <ItemGroup>
     <Folder Include="models\" />
-    <Folder Include="Helpers\" />
+    <Folder Include="Providers\" />
+    <Folder Include="DTO\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
@@ -14,5 +15,6 @@
   <ItemGroup>
     <Compile Remove="Class1.cs" />
     <Compile Remove="Helpers.cs" />
+    <Compile Remove="Helpers\JsonHelper.cs" />
   </ItemGroup>
 </Project>
