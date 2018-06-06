@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace BikeshareClient.models
 {
@@ -34,7 +35,7 @@ namespace BikeshareClient.models
 		[JsonProperty("is_returning")]
         public int Returning { get; set; }
 
-		[JsonProperty("last_report")]
+		[JsonProperty("last_reported"), JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime LastReported { get; set; }
 
 	}

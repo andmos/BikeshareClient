@@ -1,20 +1,21 @@
 ﻿using System;
 using BikeshareClient.models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace BikeshareClient.DTO
 {
 	internal class SystemInformationDTO
     {
-		public SystemInformationDTO(int lastupdated, int timeToLive, SystemInformation systemInformation)
+		public SystemInformationDTO(DateTime lastupdated, int timeToLive, SystemInformation systemInformation)
         {
 			LastUpdated = lastupdated;
 			TimeToLive = timeToLive;
 			SystemInformation = systemInformation;
 		}
         
-		[JsonProperty("last_updated")]
-		public int LastUpdated { get; private set; }
+		[JsonProperty("last_updated"), JsonConverter(typeof(UnixDateTimeConverter))]
+		public DateTime LastUpdated { get; private set; }
 
 		[JsonProperty("ttl")]
 		public int TimeToLive { get; private set; }

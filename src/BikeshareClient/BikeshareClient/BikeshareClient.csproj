@@ -16,5 +16,6 @@
     <Compile Remove="Class1.cs" />
     <Compile Remove="Helpers.cs" />
     <Compile Remove="Helpers\JsonHelper.cs" />
+    <Compile Remove="Helpers\MicrosecondEpochConverter.cs" />
   </ItemGroup>
 </Project>
