@@ -5,7 +5,7 @@ namespace BikeshareClient.models
 {
     public class Station
     {
-		public Station(int id, string name, string address, double latitude, double longitude, int capacity)
+		public Station(string id, string name, string address, double latitude, double longitude, int capacity)
         {
 			Id = id;
 			Name = name;
@@ -16,7 +16,7 @@ namespace BikeshareClient.models
 		}
 
 		[JsonProperty("station_id")]
-		public int Id { get; private set; }
+		public string Id { get; private set; }
 
 		[JsonProperty("name")]
 		public string Name { get; private set; }

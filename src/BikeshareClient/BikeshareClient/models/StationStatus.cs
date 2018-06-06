@@ -6,7 +6,7 @@ namespace BikeshareClient.models
 {
     public class StationStatus
     {
-		public StationStatus(int id, int bikesAvailable, int docksAvailable, int installed, int renting, int returning, DateTime lastReported)
+		public StationStatus(string id, int bikesAvailable, int docksAvailable, int installed, int renting, int returning, DateTime lastReported)
         {
 			Id = id;
 			BikesAvailable = bikesAvailable;
@@ -18,25 +18,31 @@ namespace BikeshareClient.models
 		}
         
 		[JsonProperty("station_id")]
-        public int Id { get; private set; }
+		public string Id { get; private set; }
 
 		[JsonProperty("num_bikes_available")]
-		public int BikesAvailable { get; set; }
+		public int BikesAvailable { get; private set; }
+
+		[JsonProperty("num_bikes_disabled")]
+		public int BikesDisabled { get; private set; }
 
 		[JsonProperty("num_docks_available")]
-        public int DocksAvailable { get; set; }
+		public int DocksAvailable { get; private set; }
 
 		[JsonProperty("is_installed")]
-		public int Installed { get; set; }
+		public int Installed { get; private set; }
 
 		[JsonProperty("is_renting")]
-        public int Renting { get; set; }
+		public int Renting { get; private set; }
 
 		[JsonProperty("is_returning")]
-        public int Returning { get; set; }
+		public int Returning { get; private set; }
+
+		[JsonProperty("num_docks_disabled")]
+		public int DocksDisabled { get; private set; }
 
 		[JsonProperty("last_reported"), JsonConverter(typeof(UnixDateTimeConverter))]
-		public DateTime LastReported { get; set; }
+		public DateTime LastReported { get; private set; }
 
 	}
 }
