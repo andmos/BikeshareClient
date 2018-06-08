@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BikeshareClient.models;
 using BikeshareClient.Providers;
 using Xunit;
 using System.Linq; 
 namespace TestBikeshareClient
-
 {
     public class TestStationProvider
     {
