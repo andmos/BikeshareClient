@@ -11,6 +11,7 @@ namespace TestBikeshareClient
     {
 		[Theory]
 		[InlineData(@"http://hamilton.socialbicycles.com/opendata/free_bike_status.json")]
+		[InlineData(@"http://coast.socialbicycles.com/opendata/free_bike_status.json")]
 		public async void GetBikeStatusAsync_GivenCorrectBaseUrl_ReturnsBikesStatus(string endpoint)
         {
             var bikeStatus = new List<BikeStatus>();
