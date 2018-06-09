@@ -1,9 +1,6 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using BikeshareClient.DTO;
 using BikeshareClient.models;
-using Newtonsoft.Json;
 
 namespace BikeshareClient.Providers
 {
