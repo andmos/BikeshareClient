@@ -7,23 +7,12 @@ using Newtonsoft.Json;
 
 namespace BikeshareClient.Providers
 {
-    public class SystemInformationProvider
+	public class SystemInformationProvider : ProviderBase
     {
     
 		public async Task<SystemInformation> GetSystemInformationAsync(string pathUrl)
 		{
-			if(string.IsNullOrEmpty(pathUrl))
-			{
-				throw new ArgumentNullException();	
-			}
-
-			SystemInformationDTO systemInformationDto;
-
-			using(var client = new HttpClient())
-			{
-				var responseString = await client.GetStringAsync(pathUrl);
-				systemInformationDto = JsonConvert.DeserializeObject<SystemInformationDTO>(responseString);
-			}
+			var systemInformationDto = await base.GetProivderEndpointDtoAsync<SystemInformationDTO>(pathUrl);
 
 			return systemInformationDto.SystemInformation; 
 			 

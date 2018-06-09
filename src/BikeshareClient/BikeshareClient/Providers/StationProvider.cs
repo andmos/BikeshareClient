@@ -1,30 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BikeshareClient.DTO;
 using BikeshareClient.models;
-using Newtonsoft.Json;
 
 namespace BikeshareClient.Providers
 {
-    public class StationProvider
+	public class StationProvider : ProviderBase
     {
 		public async Task<IEnumerable<Station>> GetStationsAsync(string pathUrl)
 		{
-			if (string.IsNullOrEmpty(pathUrl))
-            {
-                throw new ArgumentNullException();
-            }
+			var stationDto = await GetProivderEndpointDtoAsync<StationDTO>(pathUrl);
 
-			StationDTO stationDto; 
-
-			using (var client = new HttpClient())
-            {
-                var responseString = await client.GetStringAsync(pathUrl);
-				stationDto = JsonConvert.DeserializeObject<StationDTO>(responseString);
-            }
-			return stationDto.StationsData.Stations; 
+			return stationDto.StationsData.Stations;
 		}
     }
 }

@@ -8,22 +8,12 @@ using Newtonsoft.Json;
 
 namespace BikeshareClient.Providers
 {
-    public class StationStatusProvider
+	public class StationStatusProvider : ProviderBase
     {
 		public async Task<IEnumerable<StationStatus>> GetStationsStatusAsync(string pathUrl)
         {
-            if (string.IsNullOrEmpty(pathUrl))
-            {
-                throw new ArgumentNullException();
-            }
+			var stationStatusDto = await base.GetProivderEndpointDtoAsync<StationStatusDTO>(pathUrl);
 
-			StationStatusDTO stationStatusDto;
-
-            using (var client = new HttpClient())
-            {
-                var responseString = await client.GetStringAsync(pathUrl);
-				stationStatusDto = JsonConvert.DeserializeObject<StationStatusDTO>(responseString);
-            }
 			return stationStatusDto.StationsStatus.StationsStatus;
         }
     }
