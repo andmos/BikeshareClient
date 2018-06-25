@@ -5,7 +5,7 @@ Dotnet client for [GBFS](https://github.com/NABSA/gbfs).
 Mainly used against [Trondheim Bysykkel](https://trondheimbysykkel.no/open-data).
 Supports the required fields for now. 
 
-A simple [dotnet-script](https://github.com/filipw/dotnet-script) test script can be seen [here](src/TestScript/Main.csx). 
+A simple [dotnet-script](https://github.com/filipw/dotnet-script) test script can be seen [here](https://github.com/andmos/BikeshareClient/blob/master/src/TestScript/main.csx). 
 
 Simple build:
 ```
