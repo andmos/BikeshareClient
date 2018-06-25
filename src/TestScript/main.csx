@@ -1,6 +1,7 @@
 #! "netcoreapp2.0"
 
 #r "nuget: BikeshareClient, 1.0.0"
+
 using BikeshareClient.Providers;
 using System.Linq; 
 
@@ -8,6 +9,7 @@ private string StationName => "Skansen";
 
 var availableBikes = await GetAvailableBikes(await GetStationId(StationName));
 var availableDocks = await GetAvailableDocks(await GetStationId(StationName));
+
 Console.WriteLine($"Available bikes at {StationName}: {availableBikes}");
 Console.WriteLine($"Available docks at {StationName}: {availableDocks}");
 
