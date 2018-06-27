@@ -3,21 +3,45 @@
 #r "nuget: BikeshareClient, 1.0.0"
 
 using BikeshareClient.Providers;
+using BikeshareClient.models;
 using System.Linq; 
 
-private string StationName => "Skansen";
+private string StationName = "Skansen";
+private IEnumerable<Station> Stations = await GetStations();
 
-var availableBikes = await GetAvailableBikes(await GetStationId(StationName));
-var availableDocks = await GetAvailableDocks(await GetStationId(StationName));
+ParseArguments();
+
+var availableBikes = await GetAvailableBikes(GetStationId(StationName, Stations));
+var availableDocks = await GetAvailableDocks(GetStationId(StationName, Stations));
 
 Console.WriteLine($"Available bikes at {StationName}: {availableBikes}");
 Console.WriteLine($"Available docks at {StationName}: {availableDocks}");
 
-private async Task<string> GetStationId(string stationName)
+
+private void ParseArguments()
+{
+    if (Args.Any())
+    {
+        foreach (var arg in Args)
+        {
+            if (Stations.Any(s => s.Name.Equals(arg)))
+            {
+                StationName = arg;
+            }
+        }
+    }
+}
+
+private async Task<IEnumerable<Station>> GetStations()
 {
     var stationProvider = new StationProvider();
     var stations = await stationProvider.GetStationsAsync("http://gbfs.urbansharing.com/trondheim/station_information.json");
 
+    return stations;
+}
+
+private string GetStationId(string stationName, IEnumerable<Station> stations)
+{
     return stations.SingleOrDefault(s => s.Name.Equals(stationName)).Id; 
 }
 
@@ -40,3 +64,4 @@ private async Task<int> GetAvailableDocks(string stationId)
 
     return availableDocks; 
 }
+
