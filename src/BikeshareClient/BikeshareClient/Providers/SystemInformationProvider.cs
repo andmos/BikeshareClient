@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using BikeshareClient.DTO;
-using BikeshareClient.models;
+using BikeshareClient.Models;
 
 namespace BikeshareClient.Providers
 {

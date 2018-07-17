@@ -3,7 +3,7 @@
 #r "nuget: BikeshareClient, 1.0.0"
 
 using BikeshareClient.Providers;
-using BikeshareClient.models;
+using BikeshareClient.Models;
 using System.Linq; 
 
 private string StationName = "Skansen";

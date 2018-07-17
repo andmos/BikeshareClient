@@ -1,5 +1,5 @@
 ﻿using System;
-using BikeshareClient.models;
+using BikeshareClient.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 

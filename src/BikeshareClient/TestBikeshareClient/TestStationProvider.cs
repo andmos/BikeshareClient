@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using BikeshareClient.models;
+using BikeshareClient.Models;
 using BikeshareClient.Providers;
 using Xunit;
 using System.Linq; 

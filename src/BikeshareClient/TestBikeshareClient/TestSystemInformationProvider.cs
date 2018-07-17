@@ -1,5 +1,5 @@
 using System.Net.Http;
-using BikeshareClient.models;
+using BikeshareClient.Models;
 using Xunit;
 
 using BikeshareClient.Providers;

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using BikeshareClient.models;
+using BikeshareClient.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 

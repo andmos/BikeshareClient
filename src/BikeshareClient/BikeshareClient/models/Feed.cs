@@ -1,5 +1,5 @@
 ﻿using System;
-namespace BikeshareClient.models
+namespace BikeshareClient.Models
 {
     public class Feed
     {
