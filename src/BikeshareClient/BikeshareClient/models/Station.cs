@@ -1,4 +1,5 @@
 ﻿using System;
+using BikeshareClient.Helpers;
 using Newtonsoft.Json;
 
 namespace BikeshareClient.Models
@@ -19,6 +20,7 @@ namespace BikeshareClient.Models
 		public string Id { get; private set; }
 
 		[JsonProperty("name")]
+		[JsonConverter(typeof(TrimmingConverter))]
 		public string Name { get; private set; }
 
 		[JsonProperty("address")]

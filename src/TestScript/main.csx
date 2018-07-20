@@ -6,28 +6,33 @@ using BikeshareClient.Providers;
 using BikeshareClient.Models;
 using System.Linq; 
 
-private string StationName = "Skansen";
-private IEnumerable<Station> Stations = await GetStations();
+await ParseArguments();
 
-ParseArguments();
-
-var availableBikes = await GetAvailableBikes(GetStationId(StationName, Stations));
-var availableDocks = await GetAvailableDocks(GetStationId(StationName, Stations));
-
-Console.WriteLine($"Available bikes at {StationName}: {availableBikes}");
-Console.WriteLine($"Available docks at {StationName}: {availableDocks}");
-
-
-private void ParseArguments()
+private async Task ParseArguments()
 {
+    IEnumerable<Station> stations = await GetStations();
     if (Args.Any())
     {
+        string stationName = "";
         foreach (var arg in Args)
         {
-            if (Stations.Any(s => s.Name.Equals(arg)))
+            if (stations.Any(s => s.Name.Equals(arg)))
             {
-                StationName = arg;
+                stationName = arg;
             }
+        }
+        var availableBikes = await GetAvailableBikes(GetStationId(stationName, stations));
+        var availableDocks = await GetAvailableDocks(GetStationId(stationName, stations));
+
+        Console.WriteLine($"Available bikes at {stationName}: {availableBikes}");
+        Console.WriteLine($"Available docks at {stationName}: {availableDocks}");
+    }
+    else
+    {
+        Console.WriteLine("Stations:");
+        foreach(var station in stations.Select(s => s.Name))
+        {
+            Console.WriteLine($"{station}");
         }
     }
 }

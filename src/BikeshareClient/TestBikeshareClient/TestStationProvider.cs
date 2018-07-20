@@ -10,7 +10,7 @@ namespace TestBikeshareClient
 		[Theory]
 		[InlineData(@"http://gbfs.urbansharing.com/trondheim/station_information.json")]
 		[InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/station_information.json")]
-		[InlineData(@"http://hamilton.socialbicycles.com/opendata/station_information.json")]      
+	 	[InlineData(@"http://hamilton.socialbicycles.com/opendata/station_information.json")]      
 		public async void GetStationsAsync_GivenValidUrl_ReturnsListOfStations(string endpoint)
 		{
 			var stations = new List<Station>();
