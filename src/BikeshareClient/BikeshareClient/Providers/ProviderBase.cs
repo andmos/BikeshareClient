@@ -7,7 +7,7 @@ namespace BikeshareClient.Providers
 {
 	public abstract class ProviderBase
     {
-		public async Task<T> GetProivderEndpointDtoAsync<T>(string pathUrl)
+		internal async Task<T> GetProivderEndpointDtoAsync<T>(string pathUrl)
         {
             if (string.IsNullOrEmpty(pathUrl))
             {
