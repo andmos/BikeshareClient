@@ -20,7 +20,7 @@ namespace TestBikeshareClient
 			var stationResponse = await provider.GetStationsStatusAsync(endpoint);
 			stationsStatus = stationResponse.ToList();
 
-			Assert.True(stationsStatus.Count > 1); 
+			Assert.True(stationsStatus.Any()); 
 		}
     }
 }

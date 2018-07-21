@@ -20,7 +20,7 @@ namespace TestBikeshareClient
 			var bikeResponse = await provider.GetBikeStatusAsync(endpoint);
 			bikeStatus = bikeResponse.ToList();
 
-			Assert.True(bikeStatus.Count > 1);
+			Assert.True(bikeStatus.Any());
         }
     }
 }
