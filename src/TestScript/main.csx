@@ -2,6 +2,7 @@
 
 #r "nuget: BikeshareClient, 1.0.0"
 
+using BikeshareClient;
 using BikeshareClient.Providers;
 using BikeshareClient.Models;
 using System.Linq; 
@@ -10,7 +11,8 @@ await ParseArguments();
 
 private async Task ParseArguments()
 {
-    IEnumerable<Station> stations = await GetStations();
+    Client client = new Client("http://gbfs.urbansharing.com/trondheim/");
+    IEnumerable<Station> stations = await GetStations(client);
     if (Args.Any())
     {
         string stationName = "";
@@ -21,8 +23,8 @@ private async Task ParseArguments()
                 stationName = arg;
             }
         }
-        var availableBikes = await GetAvailableBikes(GetStationId(stationName, stations));
-        var availableDocks = await GetAvailableDocks(GetStationId(stationName, stations));
+        var availableBikes = await GetAvailableBikes(GetStationId(stationName, stations),client);
+        var availableDocks = await GetAvailableDocks(GetStationId(stationName, stations),client);
 
         Console.WriteLine($"Available bikes at {stationName}: {availableBikes}");
         Console.WriteLine($"Available docks at {stationName}: {availableDocks}");
@@ -37,10 +39,9 @@ private async Task ParseArguments()
     }
 }
 
-private async Task<IEnumerable<Station>> GetStations()
+private async Task<IEnumerable<Station>> GetStations(Client client)
 {
-    var stationProvider = new StationProvider();
-    var stations = await stationProvider.GetStationsAsync("http://gbfs.urbansharing.com/trondheim/station_information.json");
+    var stations = await client.GetStationsAsync();
 
     return stations;
 }
@@ -50,20 +51,18 @@ private string GetStationId(string stationName, IEnumerable<Station> stations)
     return stations.SingleOrDefault(s => s.Name.Equals(stationName)).Id; 
 }
 
-private async Task<int> GetAvailableBikes(string stationId)
+private async Task<int> GetAvailableBikes(string stationId, Client client)
 {
-    var stationStatusProvider = new StationStatusProvider();
-    var stations = await stationStatusProvider.GetStationsStatusAsync("http://gbfs.urbansharing.com/trondheim/station_status.json");
+    var stations = await client.GetStationsStatusAsync();
 
     var availableBikes = stations.FirstOrDefault(s => s.Id.Equals(stationId)).BikesAvailable;
 
     return availableBikes; 
 }
 
-private async Task<int> GetAvailableDocks(string stationId)
+private async Task<int> GetAvailableDocks(string stationId, Client client)
 {
-    var stationStatusProvider = new StationStatusProvider();
-    var stations = await stationStatusProvider.GetStationsStatusAsync("http://gbfs.urbansharing.com/trondheim/station_status.json");
+    var stations = await client.GetStationsStatusAsync();
 
     var availableDocks = stations.FirstOrDefault(s => s.Id.Equals(stationId)).DocksAvailable;
 
