@@ -9,7 +9,8 @@ namespace BikeshareClient.Providers
     {
 		public async Task<IEnumerable<StationStatus>> GetStationsStatusAsync(string pathUrl)
         {
-			var stationStatusDto = await base.GetProivderEndpointDtoAsync<StationStatusDTO>(pathUrl);
+			var resourceName = "station_status.json";
+			var stationStatusDto = await base.GetProivderEndpointDtoAsync<StationStatusDTO>(pathUrl, resourceName);
 
 			return stationStatusDto.StationsStatus.StationsStatus;
         }

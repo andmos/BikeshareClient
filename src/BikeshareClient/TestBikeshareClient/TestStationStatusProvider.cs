@@ -9,9 +9,9 @@ namespace TestBikeshareClient
     public class TestStationStatusProvider
     {
 		[Theory]
-		[InlineData(@"http://gbfs.urbansharing.com/trondheim/station_status.json")]
-		[InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/station_status.json")]
-		[InlineData(@"http://hamilton.socialbicycles.com/opendata/station_status.json")]
+		[InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
+		[InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/")]
+		[InlineData(@"http://hamilton.socialbicycles.com/opendata/")]
 		public async void GetGetStationsStatusAsync_GivenCorrectBaseUrl_ReturnsStationsStatus(string endpoint)
 		{
 			var stationsStatus = new List<StationStatus>();

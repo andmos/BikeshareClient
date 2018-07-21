@@ -9,7 +9,8 @@ namespace BikeshareClient.Providers
     
 		public async Task<SystemInformation> GetSystemInformationAsync(string pathUrl)
 		{
-			var systemInformationDto = await base.GetProivderEndpointDtoAsync<SystemInformationDTO>(pathUrl);
+			var resourceName = "system_information.json";
+			var systemInformationDto = await base.GetProivderEndpointDtoAsync<SystemInformationDTO>(pathUrl, resourceName);
 
 			return systemInformationDto.SystemInformation; 
 			 

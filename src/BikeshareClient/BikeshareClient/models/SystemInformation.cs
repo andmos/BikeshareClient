@@ -16,7 +16,7 @@ namespace BikeshareClient.Models
 			Email = email;
 		}
 
-		[JsonProperty("id")]
+		[JsonProperty("system_id")]
 		public string Id { get; private set; } 
 
 		[JsonProperty("name")]
