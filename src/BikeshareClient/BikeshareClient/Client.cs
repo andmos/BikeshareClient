@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BikeshareClient.Models;
 using BikeshareClient.Providers;
+
 namespace BikeshareClient
 {
     public class Client
@@ -41,5 +42,6 @@ namespace BikeshareClient
 		{
 			return await _bikeStatusProvider.Value.GetBikeStatusAsync(_gbfsBaseUrl);
 		}
+
     }
 }
