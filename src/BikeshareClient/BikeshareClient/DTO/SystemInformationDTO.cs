@@ -5,7 +5,7 @@ using Newtonsoft.Json.Converters;
 
 namespace BikeshareClient.DTO
 {
-	internal class SystemInformationDTO
+	internal struct SystemInformationDTO
     {
 		public SystemInformationDTO(DateTime lastupdated, int timeToLive, SystemInformation systemInformation)
         {

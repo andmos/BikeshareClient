@@ -6,7 +6,7 @@ using Newtonsoft.Json.Converters;
 
 namespace BikeshareClient.DTO
 {
-	internal class BikeStatusDTO
+	internal struct BikeStatusDTO
     {
 		public BikeStatusDTO(DateTime lastUpdate, int timeToLive, BikeData bikeData)
         {
@@ -28,7 +28,7 @@ namespace BikeshareClient.DTO
 	internal class BikeData
     {
 		[JsonProperty("bikes")]
-        public IEnumerable<BikeStatus> Bikes { get; set; }
+		public IEnumerable<BikeStatus> Bikes { get; private set; }
     }
 
 }
