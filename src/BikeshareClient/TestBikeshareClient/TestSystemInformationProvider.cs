@@ -3,6 +3,7 @@ using BikeshareClient.Models;
 using Xunit;
 
 using BikeshareClient.Providers;
+using System.Threading.Tasks;
 
 namespace TestBikeshareClient
 {
@@ -12,7 +13,7 @@ namespace TestBikeshareClient
 		[InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
 		[InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/")]
 		[InlineData(@"http://hamilton.socialbicycles.com/opendata/")]      
-		public async void GetSystemInformation_GivenValidSystemInformationUrl_ReturnsSystemInformation(string endpoint)
+		public async Task GetSystemInformation_GivenValidSystemInformationUrl_ReturnsSystemInformation(string endpoint)
         {
 			var systmInfromationProvder = new SystemInformationProvider();
 

@@ -3,6 +3,8 @@ using Xunit;
 using BikeshareClient;
 using System.Linq;
 using BikeshareClient.Models;
+using System.Threading.Tasks;
+
 namespace TestBikeshareClient
 {
     public class TestBikeShareClient
@@ -11,7 +13,7 @@ namespace TestBikeshareClient
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
         [InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/")]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/")] 
-		public async void GetStationsAsync_GivenValidBaseUrl_ReturnsStations(string baseUrl)
+		public async Task GetStationsAsync_GivenValidBaseUrl_ReturnsStations(string baseUrl)
 		{
 			var client = new Client(baseUrl);
 
@@ -25,7 +27,7 @@ namespace TestBikeshareClient
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
         [InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/")]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/")] 
-		public async void GetSystemInformationAsync_GivenValidBaseUrl_ReturnsInformation(string baseUrl)
+		public async Task GetSystemInformationAsync_GivenValidBaseUrl_ReturnsInformation(string baseUrl)
 		{
 			var client = new Client(baseUrl);
 

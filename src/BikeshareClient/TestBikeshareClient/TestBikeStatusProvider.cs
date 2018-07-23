@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BikeshareClient.Models;
 using BikeshareClient.Providers;
 using Xunit;
@@ -12,7 +13,7 @@ namespace TestBikeshareClient
 		[Theory]
 		[InlineData(@"http://hamilton.socialbicycles.com/opendata/")]
 		[InlineData(@"http://coast.socialbicycles.com/opendata/")]
-		public async void GetBikeStatusAsync_GivenCorrectBaseUrl_ReturnsBikesStatus(string endpoint)
+		public async Task GetBikeStatusAsync_GivenCorrectBaseUrl_ReturnsBikesStatus(string endpoint)
         {
             var bikeStatus = new List<BikeStatus>();
             var provider = new BikeStatusProvider();
