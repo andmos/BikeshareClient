@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BikeshareClient.Models;
+using BikeshareClient.DTO;
 using BikeshareClient.Providers;
 
 namespace BikeshareClient
@@ -9,38 +10,36 @@ namespace BikeshareClient
     public class Client
     {
 		private readonly string _gbfsBaseUrl;
-		private readonly Lazy<StationProvider> _stationProvider;
-		private readonly Lazy<BikeStatusProvider> _bikeStatusProvider;
-		private readonly Lazy<StationStatusProvider> _stationStatusProvider;
-		private readonly Lazy<SystemInformationProvider> _systemInformationProvider; 
+		private readonly BikeShareDataProvider _bikeShareDataProvider; 
         
 		public Client(string gbfsBaseUrl)
         {
 			_gbfsBaseUrl = gbfsBaseUrl;
-			_stationProvider = new Lazy<StationProvider>();
-			_bikeStatusProvider = new Lazy<BikeStatusProvider>();
-			_stationStatusProvider = new Lazy<StationStatusProvider>();
-			_systemInformationProvider = new Lazy<SystemInformationProvider>(); 
+			_bikeShareDataProvider = new BikeShareDataProvider(_gbfsBaseUrl);
 		}
         
 		public async Task<SystemInformation> GetSystemInformationAsync()
 		{
-			return await _systemInformationProvider.Value.GetSystemInformationAsync(_gbfsBaseUrl);
+			var systemInformation = await _bikeShareDataProvider.GetBikeShareData<SystemInformationDTO>();
+			return systemInformation.SystemInformation;
 		}
 
 		public async Task<IEnumerable<Station>> GetStationsAsync()
 		{
-			return await _stationProvider.Value.GetStationsAsync(_gbfsBaseUrl);
+			var stations = await _bikeShareDataProvider.GetBikeShareData<StationDTO>();
+			return stations.StationsData.Stations;
 		}
 
 		public async Task<IEnumerable<StationStatus>> GetStationsStatusAsync()
 		{
-			return await _stationStatusProvider.Value.GetStationsStatusAsync(_gbfsBaseUrl);
+			var stationStatus = await _bikeShareDataProvider.GetBikeShareData<StationStatusDTO>();
+			return stationStatus.StationsStatusData.StationsStatus;
 		}
 
 		public async Task<IEnumerable<BikeStatus>> GetBikeStatusAsync()
 		{
-			return await _bikeStatusProvider.Value.GetBikeStatusAsync(_gbfsBaseUrl);
+			var bikeStatus = await _bikeShareDataProvider.GetBikeShareData<BikeStatusDTO>();
+			return bikeStatus.BikeStatusData.Bikes;
 		}
 
     }
