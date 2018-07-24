@@ -8,11 +8,11 @@ namespace BikeshareClient.DTO
 {
 	internal struct BikeStatusDTO
     {
-		public BikeStatusDTO(DateTime lastUpdate, int timeToLive, BikeData bikeData)
+		public BikeStatusDTO(DateTime lastUpdate, int timeToLive, BikeStatusData bikeData)
         {
 			LastUpdated = lastUpdate;
 			TimeToLive = timeToLive;
-			BikeData = bikeData; 
+			BikeStatusData = bikeData; 
 		}
 
 		[JsonProperty("last_updated"), JsonConverter(typeof(UnixDateTimeConverter))]
@@ -22,10 +22,10 @@ namespace BikeshareClient.DTO
         public int TimeToLive { get; private set; }
 
         [JsonProperty("data")]
-		public BikeData BikeData { get; private set; }
+		public BikeStatusData BikeStatusData { get; private set; }
 	}
 
-	internal class BikeData
+	internal class BikeStatusData
     {
 		[JsonProperty("bikes")]
 		public IEnumerable<BikeStatus> Bikes { get; private set; }

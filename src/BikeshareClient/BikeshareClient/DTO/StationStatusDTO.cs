@@ -12,7 +12,7 @@ namespace BikeshareClient.DTO
         {
             LastUpdated = lastUpdated;
             TimeToLive = timeToLive;
-            StationsStatus = stationStatusData; 
+            StationsStatusData = stationStatusData; 
         }
 
 		[JsonProperty("last_updated"), JsonConverter(typeof(UnixDateTimeConverter))]
@@ -22,7 +22,7 @@ namespace BikeshareClient.DTO
         public int TimeToLive { get; private set; }
         
 		[JsonProperty("data")]
-        public StationStatusData StationsStatus { get; private set; }
+        public StationStatusData StationsStatusData { get; private set; }
 
     }
 	internal struct StationStatusData
