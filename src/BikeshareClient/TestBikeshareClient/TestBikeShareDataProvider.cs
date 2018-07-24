@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using BikeshareClient.Providers;
 using BikeshareClient.DTO;
 using Xunit;
-using System.Linq;
 namespace TestBikeshareClient
 {
     public class TestBikeShareDataProvider

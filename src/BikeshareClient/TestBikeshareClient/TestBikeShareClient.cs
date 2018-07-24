@@ -1,8 +1,6 @@
-﻿using System;
-using Xunit;
+﻿using Xunit;
 using BikeshareClient;
 using System.Linq;
-using BikeshareClient.Models;
 using System.Threading.Tasks;
 
 namespace TestBikeshareClient

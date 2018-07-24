@@ -7,7 +7,7 @@ using BikeshareClient.Providers;
 
 namespace BikeshareClient
 {
-    public class Client
+	public class Client : IBikeshareClient
     {
 		private readonly string _gbfsBaseUrl;
 		private readonly BikeShareDataProvider _bikeShareDataProvider; 
