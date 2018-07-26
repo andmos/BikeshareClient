@@ -5,23 +5,22 @@ using Newtonsoft.Json.Converters;
 
 namespace BikeshareClient.DTO
 {
-	internal struct SystemInformationDTO
+	internal readonly struct SystemInformationDTO
     {
-		public SystemInformationDTO(DateTime lastupdated, int timeToLive, SystemInformation systemInformation)
+		public SystemInformationDTO([JsonProperty("last_updated"), JsonConverter(typeof(UnixDateTimeConverter))] DateTime lastupdated, 
+		                            [JsonProperty("ttl")] int timeToLive,
+		                            [JsonProperty("data")] SystemInformation systemInformation)
         {
 			LastUpdated = lastupdated;
 			TimeToLive = timeToLive;
 			SystemInformation = systemInformation;
 		}
         
-		[JsonProperty("last_updated"), JsonConverter(typeof(UnixDateTimeConverter))]
-		public DateTime LastUpdated { get; private set; }
+		public DateTime LastUpdated { get; }
 
-		[JsonProperty("ttl")]
-		public int TimeToLive { get; private set; }
+		public int TimeToLive { get; }
 
-		[JsonProperty("data")]
-		public SystemInformation SystemInformation { get; private set; }
+		public SystemInformation SystemInformation { get; }
 
     }
 }

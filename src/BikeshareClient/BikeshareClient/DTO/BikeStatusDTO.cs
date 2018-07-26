@@ -6,28 +6,33 @@ using Newtonsoft.Json.Converters;
 
 namespace BikeshareClient.DTO
 {
-	internal struct BikeStatusDTO
+	internal readonly struct BikeStatusDTO
     {
-		public BikeStatusDTO(DateTime lastUpdate, int timeToLive, BikeStatusData bikeData)
+		[JsonConstructor]
+		public BikeStatusDTO([JsonProperty("last_updated"), JsonConverter(typeof(UnixDateTimeConverter))]DateTime lastUpdate, 
+		                     [JsonProperty("ttl")] int timeToLive, 
+		                     [JsonProperty("data")] BikeStatusData bikeData)
         {
 			LastUpdated = lastUpdate;
 			TimeToLive = timeToLive;
 			BikeStatusData = bikeData; 
 		}
 
-		[JsonProperty("last_updated"), JsonConverter(typeof(UnixDateTimeConverter))]
-        public DateTime LastUpdated { get; private set; }
+        public DateTime LastUpdated { get; }
 
-        [JsonProperty("ttl")]
-        public int TimeToLive { get; private set; }
+        public int TimeToLive { get; }
 
-        [JsonProperty("data")]
-		public BikeStatusData BikeStatusData { get; private set; }
+		public BikeStatusData BikeStatusData { get; }
 	}
 
-	internal class BikeStatusData
+	internal struct BikeStatusData
     {
-		[JsonProperty("bikes")]
+		[JsonConstructor]
+		public BikeStatusData(IEnumerable<BikeStatus> bikes)
+		{
+			Bikes = bikes;
+		}
+
 		public IEnumerable<BikeStatus> Bikes { get; private set; }
     }
 
