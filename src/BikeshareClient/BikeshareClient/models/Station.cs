@@ -2,10 +2,19 @@
 using BikeshareClient.Helpers;
 using Newtonsoft.Json;
 
-namespace BikeshareClient.Models {
+namespace BikeshareClient.Models
+{
     [DebuggerDisplay("{Address} holds {Capacity} bikes, Id: {Id}", Name = "{Name}")]
-    public class Station {
-        public Station(string id, string name, string address, double latitude, double longitude, int capacity) {
+    public class Station
+    {
+        [JsonConstructor]
+        public Station([JsonProperty("station_id")] string id,
+                       [JsonProperty("name"), JsonConverter(typeof(TrimmingConverter))] string name,
+                       [JsonProperty("address")] string address,
+                       [JsonProperty("lat")] double latitude,
+                       [JsonProperty("lon")] double longitude,
+                       [JsonProperty("capacity")] int capacity)
+        {
             Id = id;
             Name = name;
             Address = address;
@@ -14,23 +23,16 @@ namespace BikeshareClient.Models {
             Capacity = capacity;
         }
 
-        [JsonProperty("station_id")]
         public string Id { get; }
 
-        [JsonProperty("name")]
-        [JsonConverter(typeof(TrimmingConverter))]
         public string Name { get; }
 
-        [JsonProperty("address")]
         public string Address { get; }
 
-        [JsonProperty("lat")]
         public double Latitude { get; }
 
-        [JsonProperty("lon")]
         public double Longitude { get; }
 
-        [JsonProperty("capacity")]
         public int Capacity { get; }
     }
 

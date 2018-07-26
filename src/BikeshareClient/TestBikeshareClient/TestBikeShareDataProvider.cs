@@ -8,6 +8,8 @@ namespace TestBikeshareClient
     public class TestBikeShareDataProvider
     {
         [Theory]
+        [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
+        public async Task GetBikeShareData_GivenCorrectBaseUrlAndType_ReturnsCorrectType(string endpoint)
         {
             var dataProvider = new BikeShareDataProvider(endpoint);
 
