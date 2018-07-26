@@ -1,11 +1,20 @@
 ﻿using System;
+using System.Diagnostics;
 using Newtonsoft.Json;
 
 namespace BikeshareClient.Models
 {
+	[DebuggerDisplay("{Name}, {OperatorName}")]
     public class SystemInformation
-    {      
-		public SystemInformation(string id, string name, string language, string operatorName, string timeZone, string phoneNumber, string email)
+    {   
+		[JsonConstructor]
+		public SystemInformation(string id, 
+		                         [JsonProperty("name")] string name, 
+		                         [JsonProperty("language")]string language, 
+		                         [JsonProperty("operator")]string operatorName,
+		                         [JsonProperty("timezone")]string timeZone, 
+		                         [JsonProperty("phone_number")]string phoneNumber,
+		                         [JsonProperty("email")] string email)
 		{
 			Id = id;
 			Name = name;
@@ -15,27 +24,21 @@ namespace BikeshareClient.Models
 			PhoneNumber = phoneNumber;
 			Email = email;
 		}
+		//TODO: When Trondheim Bysykkel uses correct property name in JSON, this can be changed. 
+		[JsonProperty("system_id")] 
+		public string Id { get; } 
 
-		[JsonProperty("system_id")]
-		public string Id { get; private set; } 
+		public string Name { get; }
 
-		[JsonProperty("name")]
-		public string Name { get; private set; }
+        public string Language { get; }
 
-		[JsonProperty("language")]
-        public string Language { get; private set; }
+		public string OperatorName { get; }
 
-		[JsonProperty("operator")]
-		public string OperatorName { get; private set; }
+		public string TimeZone { get; }
 
-		[JsonProperty("timezone")]
-		public string TimeZone { get; private set; }
+		public string PhoneNumber { get; }
 
-		[JsonProperty("phone_number")]
-		public string PhoneNumber { get; private set; }
-
-		[JsonProperty("email")]
-		public string Email { get; private set; }
+		public string Email { get; }
 
     }
 }
