@@ -6,7 +6,7 @@ using Newtonsoft.Json.Converters;
 
 namespace BikeshareClient.DTO
 {
-    internal struct StationDTO
+    internal readonly struct StationDTO
     {
         [JsonConstructor]
         public StationDTO([JsonProperty("last_updated"), JsonConverter(typeof(UnixDateTimeConverter))] DateTime lastUpdated,
