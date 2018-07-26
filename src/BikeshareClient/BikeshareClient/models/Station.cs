@@ -1,39 +1,37 @@
-﻿using System;
+﻿using System.Diagnostics;
 using BikeshareClient.Helpers;
 using Newtonsoft.Json;
 
-namespace BikeshareClient.Models
-{
-    public class Station
-    {
-		public Station(string id, string name, string address, double latitude, double longitude, int capacity)
-        {
-			Id = id;
-			Name = name;
-			Address = address;
-			Latitude = latitude;
-			Longitude = longitude;
-			Capacity = capacity; 
-		}
+namespace BikeshareClient.Models {
+    [DebuggerDisplay("{Address} holds {Capacity} bikes, Id: {Id}", Name = "{Name}")]
+    public class Station {
+        public Station(string id, string name, string address, double latitude, double longitude, int capacity) {
+            Id = id;
+            Name = name;
+            Address = address;
+            Latitude = latitude;
+            Longitude = longitude;
+            Capacity = capacity;
+        }
 
-		[JsonProperty("station_id")]
-		public string Id { get; private set; }
+        [JsonProperty("station_id")]
+        public string Id { get; }
 
-		[JsonProperty("name")]
-		[JsonConverter(typeof(TrimmingConverter))]
-		public string Name { get; private set; }
+        [JsonProperty("name")]
+        [JsonConverter(typeof(TrimmingConverter))]
+        public string Name { get; }
 
-		[JsonProperty("address")]
-		public string Address { get; private set; }
+        [JsonProperty("address")]
+        public string Address { get; }
 
-		[JsonProperty("lat")]
-		public double Latitude { get; private set; }
+        [JsonProperty("lat")]
+        public double Latitude { get; }
 
-		[JsonProperty("lon")]
-		public double Longitude { get; private set; }
+        [JsonProperty("lon")]
+        public double Longitude { get; }
 
-		[JsonProperty("capacity")]
-		public int Capacity { get; private set; }
-	}
+        [JsonProperty("capacity")]
+        public int Capacity { get; }
+    }
 
 }
