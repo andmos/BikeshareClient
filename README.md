@@ -13,3 +13,4 @@ $ docker run --rm -it -v $(pwd):/app microsoft/dotnet:2.0-sdk dotnet pack app/sr
 ```
 
 [![Build Status](https://travis-ci.org/andmos/BikeshareClient.svg?branch=master)](https://travis-ci.org/andmos/BikeshareClient)
+[![NuGet](https://img.shields.io/nuget/v/BikeshareClient.svg)](https://www.nuget.org/packages/BikeshareClient/)
