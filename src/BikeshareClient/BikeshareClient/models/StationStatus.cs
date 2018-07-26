@@ -6,43 +6,45 @@ namespace BikeshareClient.Models
 {
     public class StationStatus
     {
-		public StationStatus(string id, int bikesAvailable, int docksAvailable, int installed, int renting, int returning, DateTime lastReported)
+		[JsonConstructor]
+		public StationStatus([JsonProperty("station_id")] string id,
+		                     [JsonProperty("num_bikes_available")] int bikesAvailable,
+		                     [JsonProperty("num_bikes_disabled")] int bikesDisabled,
+		                     [JsonProperty("num_docks_available")]int docksAvailable, 
+		                     [JsonProperty("is_installed")]int installed,
+		                     [JsonProperty("is_renting")]int renting,
+		                     [JsonProperty("is_returning")]int returning, 
+		                     [JsonProperty("num_docks_disabled")]int docsDisabled,
+		                     [JsonProperty("last_reported"), JsonConverter(typeof(UnixDateTimeConverter))] DateTime lastReported)
         {
 			Id = id;
 			BikesAvailable = bikesAvailable;
+			BikesDisabled = bikesDisabled;
 			DocksAvailable = docksAvailable;
 			Installed = installed;
 			Renting = renting;
 			Returning = returning;
+			DocksDisabled = docsDisabled;
 			LastReported = lastReported;
 		}
-        
-		[JsonProperty("station_id")]
-		public string Id { get; private set; }
 
-		[JsonProperty("num_bikes_available")]
-		public int BikesAvailable { get; private set; }
+		public string Id { get; }
 
-		[JsonProperty("num_bikes_disabled")]
-		public int BikesDisabled { get; private set; }
+		public int BikesAvailable { get; }
 
-		[JsonProperty("num_docks_available")]
-		public int DocksAvailable { get; private set; }
+		public int BikesDisabled { get; }
 
-		[JsonProperty("is_installed")]
-		public int Installed { get; private set; }
+		public int DocksAvailable { get; }
 
-		[JsonProperty("is_renting")]
-		public int Renting { get; private set; }
+		public int Installed { get; }
 
-		[JsonProperty("is_returning")]
-		public int Returning { get; private set; }
+		public int Renting { get; }
 
-		[JsonProperty("num_docks_disabled")]
-		public int DocksDisabled { get; private set; }
+		public int Returning { get; }
 
-		[JsonProperty("last_reported"), JsonConverter(typeof(UnixDateTimeConverter))]
-		public DateTime LastReported { get; private set; }
+		public int DocksDisabled { get; }
+
+		public DateTime LastReported { get; }
 
 	}
 }
