@@ -33,7 +33,7 @@ namespace BikeshareClient.DTO
 			Bikes = bikes;
 		}
 
-		public IEnumerable<BikeStatus> Bikes { get; private set; }
+		public IEnumerable<BikeStatus> Bikes { get; }
     }
 
 }
