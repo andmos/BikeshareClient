@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
 using Newtonsoft.Json;
 
 namespace BikeshareClient.Models
 {
+	[DebuggerDisplay("{Name}, {OperatorName}")]
     public class SystemInformation
     {   
 		[JsonConstructor]

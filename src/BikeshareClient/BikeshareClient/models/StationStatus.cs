@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace BikeshareClient.Models
 {
+	[DebuggerDisplay("Station id {Id} has {BikesAvailable} bikes availabke, {BikesDisabled} bikes disabled, {DocksAvailable} docs availabke, {DocksDisabled} docs disabled")]
     public class StationStatus
     {
 		[JsonConstructor]
