@@ -32,5 +32,13 @@ namespace TestBikeshareClient
 
             await Assert.ThrowsAsync<NotSupportedException>(async () => await dataProvider.GetBikeShareData<Int32>());
         }
+
+		[Fact]
+		public async Task GetBikeShareData_GivenBaseUrlForProviderWithMissingEndpointImplementation_ThrowsNotImplementetdException()
+		{
+			var dataProvider = new BikeShareDataProvider("http://gbfs.urbansharing.com/trondheim/");
+
+			await Assert.ThrowsAsync<NotImplementedException>(async () => await dataProvider.GetBikeShareData<BikeStatusDTO>());
+		}
     }
 }
