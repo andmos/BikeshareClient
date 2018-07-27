@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using BikeshareClient.DTO;
@@ -26,36 +27,40 @@ namespace BikeshareClient.Providers
 
 		}
 
-		private static string FindResourceType<T>()
+		private static KeyValuePair<string,string> FindResourceType<T>()
 		{
 			switch (default(T))
 			{
 				case BikeStatusDTO bikeStatus:
-					return "free_bike_status.json";
+					return new KeyValuePair<string, string>("free_bike_status.json","Bikes");
 				case StationDTO station:
-					return "station_information.json";
+					return new KeyValuePair<string, string>("station_information.json","Stations");
 				case StationStatusDTO stationStatus:
-					return "station_status.json";
+					return new KeyValuePair<string, string>("station_status.json","Station status");
 				case SystemInformationDTO systemInformation:
-					return "system_information.json";
+					return new KeyValuePair<string, string>("system_information.json","GBFS System information");
 				default:
 					throw new NotSupportedException($"The type {typeof(T).FullName} is not a supported GBFS resource.");
 			}
 		}
 
-		private async Task<T> GetProivderEndpointDtoAsync<T>(string resource)
+		private async Task<T> GetProivderEndpointDtoAsync<T>(KeyValuePair<string,string> resource)
         {
-			if (string.IsNullOrEmpty(resource))
+			if (string.IsNullOrEmpty(resource.Key))
             {
                 throw new ArgumentNullException();
             }
 
-			var baseUrl = new Uri(_gbfsBaseUrl).Append(resource).AbsoluteUri;
+			var baseUrl = new Uri(_gbfsBaseUrl).Append(resource.Key).AbsoluteUri;
          
             using (var client = new HttpClient())
             {
-                var responseString = await client.GetStringAsync(baseUrl);
-				return JsonConvert.DeserializeObject<T>(responseString);
+				var response = await client.GetAsync(baseUrl);
+				if(!response.IsSuccessStatusCode)
+				{
+					throw new NotImplementedException($"Could not find any {resource.Value}, {baseUrl} returned status code {response.StatusCode}");
+				}
+				return JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
             }
         }
     }
