@@ -2,8 +2,8 @@ BikeShareClient
 ===
 
 Dotnet client for [GBFS](https://github.com/NABSA/gbfs).
-Mainly used against [Trondheim Bysykkel](https://trondheimbysykkel.no/open-data).
-Supports the required fields for now. 
+Mainly used against [Urban Infrastructure Partner](https://urbansharing.com/), with [Trondheim City Bike](https://trondheimbysykkel.no/en/open-data) and [Bergen City Bike](https://bergenbysykkel.no/en/apne-data). 
+Supports the required fields in GBFS for now. 
 
 A simple [dotnet-script](https://github.com/filipw/dotnet-script) test script can be seen [here](https://github.com/andmos/BikeshareClient/blob/master/src/TestScript/main.csx). 
 
