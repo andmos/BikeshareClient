@@ -9,6 +9,7 @@ namespace TestBikeshareClient
     {
 		[Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
+		[InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/")]
         [InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/")]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/")] 
 		public async Task GetStationsAsync_GivenValidBaseUrl_ReturnsStations(string baseUrl)
@@ -23,6 +24,7 @@ namespace TestBikeshareClient
 
 		[Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
+		[InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/")]
         [InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/")]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/")] 
 		public async Task GetSystemInformationAsync_GivenValidBaseUrl_ReturnsInformation(string baseUrl)
@@ -49,6 +51,7 @@ namespace TestBikeshareClient
 
 		[Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
+		[InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/")]
         [InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/")]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/")]
         public async Task GetStationsStatusAsync_GivenCorrectBaseUrl_ReturnsStationsStatus(string endpoint)
