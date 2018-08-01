@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.0-sdk as builder
+FROM microsoft/dotnet:2.1-sdk as builder
 
 ARG VERSION_SUFFIX
 
