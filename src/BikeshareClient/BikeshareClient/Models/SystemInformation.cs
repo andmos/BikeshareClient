@@ -8,7 +8,7 @@ namespace BikeshareClient.Models
     public class SystemInformation
     {   
 		[JsonConstructor]
-		public SystemInformation(string id, 
+		public SystemInformation([JsonProperty("system_id")] string id, 
 		                         [JsonProperty("name")] string name, 
 		                         [JsonProperty("language")]string language, 
 		                         [JsonProperty("operator")]string operatorName,
@@ -24,8 +24,7 @@ namespace BikeshareClient.Models
 			PhoneNumber = phoneNumber;
 			Email = email;
 		}
-		//TODO: When Trondheim Bysykkel uses correct property name in JSON, this can be changed. 
-		[JsonProperty("system_id")] 
+
 		public string Id { get; } 
 
 		public string Name { get; }
