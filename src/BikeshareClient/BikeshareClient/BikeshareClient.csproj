@@ -2,8 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <ReleaseVersion>1.0.4</ReleaseVersion>
-    <VersionPrefix>1.0.4</VersionPrefix>
+    <ReleaseVersion>1.0.5</ReleaseVersion>
+    <VersionPrefix>1.0.5</VersionPrefix>
+    <Title>BikeshareClient</Title>
+    <Authors>andmos</Authors>
+    <Description>Dotnet client for bike share systems implementing the General Bikeshare Feed Specification (GBFS).</Description>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/andmos/BikeshareClient</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
