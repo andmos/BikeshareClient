@@ -12,6 +12,11 @@ Simple build:
 $ docker run --rm -it -v $(pwd):/app microsoft/dotnet:2.1-sdk dotnet pack app/src/BikeshareClient -o /app
 ```
 
+Run test script: 
+```
+$ docker run --rm -it -v $(pwd)/src/TestScript/:/scripts  andmos/dotnet-script main.csx "Skansen"
+```
+
 [![Build Status](https://travis-ci.org/andmos/BikeshareClient.svg?branch=master)](https://travis-ci.org/andmos/BikeshareClient)
 
 [![NuGet](https://img.shields.io/nuget/v/BikeshareClient.svg)](https://www.nuget.org/packages/BikeshareClient/)
