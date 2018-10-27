@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using BikeshareClient.Models;
 using BikeshareClient.DTO;
 using BikeshareClient.Providers;
+using System.Linq; 
 
 namespace BikeshareClient
 {
@@ -16,6 +17,18 @@ namespace BikeshareClient
         {
 			_gbfsBaseUrl = gbfsBaseUrl;
 			_bikeShareDataProvider = new BikeShareDataProvider(_gbfsBaseUrl);
+		}
+
+		public async Task<IEnumerable<Feed>> GetAvailableFeedsAsync()
+		{
+			var gbfsDiscovery = await _bikeShareDataProvider.GetBikeShareData<GbfsDTO>();
+			return gbfsDiscovery.FeedsData.SelectMany(l => l.Language.Feeds.ToList());
+		}
+        
+		public async Task<IEnumerable<Language>> GetAvailableLanguagesAsync()
+		{
+			var gbfsDiscovery = await _bikeShareDataProvider.GetBikeShareData<GbfsDTO>();
+			return gbfsDiscovery.FeedsData.Select(l => l.Language);
 		}
         
 		public async Task<SystemInformation> GetSystemInformationAsync()

@@ -27,4 +27,16 @@
   <ItemGroup>
     <Compile Remove="TestSystemInformationProvider.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ProvidersTests\" />
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Helpers\TestableGbfsJson.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Helpers\TestableGbfsJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

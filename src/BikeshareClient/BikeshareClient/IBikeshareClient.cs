@@ -30,5 +30,17 @@ namespace BikeshareClient
         /// </summary>
         /// <returns>The bike status async.</returns>
 		Task<IEnumerable<BikeStatus>> GetBikeStatusAsync();
+
+        /// <summary>
+        /// Gets the available feeds from GBFS discovery endpoint async.
+        /// </summary>
+        /// <returns>The available feeds async.</returns>
+		Task<IEnumerable<Feed>> GetAvailableFeedsAsync();
+
+		/// <summary>
+        /// Gets the available langauages from GBFS discovery endpoint async.
+        /// </summary>
+        /// <returns>The available feeds async.</returns>
+		Task<IEnumerable<Language>> GetAvailableLanguagesAsync();
 	}
 }
