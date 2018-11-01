@@ -1,9 +1,13 @@
 ﻿using System;
+using Newtonsoft.Json;
+
 namespace BikeshareClient.Models
 {
     public class Feed
     {
-        public Feed(string name, string url)
+		[JsonConstructor]
+		public Feed([JsonProperty("name")]string name,
+		            [JsonProperty("url")]string url)
         {
 			Name = name;
 			Url = url;

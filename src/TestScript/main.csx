@@ -1,6 +1,6 @@
 #! "netcoreapp2.0"
 
-#r "nuget: BikeshareClient, 1.0.5"
+#r "nuget: BikeshareClient, 1.1.0"
 
 using BikeshareClient;
 using BikeshareClient.Providers;
@@ -11,7 +11,7 @@ await ParseArguments();
 
 private async Task ParseArguments()
 {
-    Client client = new Client("http://gbfs.urbansharing.com/trondheim/");
+    Client client = new Client("http://gbfs.urbansharing.com/trondheim/gbfs.json");
     IEnumerable<Station> stations = await GetStations(client);
     if (Args.Any())
     {

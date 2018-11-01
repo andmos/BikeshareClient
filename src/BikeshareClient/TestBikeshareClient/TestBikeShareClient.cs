@@ -50,6 +50,18 @@ namespace TestBikeshareClient
         }
 
 		[Theory]
+        [InlineData(@"http://hamilton.socialbicycles.com/opendata/gbfs.json")]
+        [InlineData(@"http://coast.socialbicycles.com/opendata/gbfs.json")]
+        public async Task GetBikeStatusAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_ReturnsBikesStatus(string endpoint)
+        {
+            var client = new Client(endpoint);
+
+            var clientRespons = await client.GetBikeStatusAsync();
+
+            Assert.True(clientRespons.Any());
+        }
+
+		[Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
 		[InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/")]
         [InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/")]
@@ -62,6 +74,83 @@ namespace TestBikeshareClient
 
             Assert.True(clientRespons.Any());
         }
-              
+
+		[Theory]
+        [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
+        [InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/gbfs.json")]
+        [InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/gbfs.json")]
+        [InlineData(@"http://hamilton.socialbicycles.com/opendata/gbfs.json")]
+        public async Task GetStationsStatusAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_ReturnsStationsStatus(string endpoint)
+        {
+            var client = new Client(endpoint);
+
+            var clientRespons = await client.GetStationsStatusAsync();
+
+            Assert.True(clientRespons.Any());
+        }
+
+		[Theory]
+		[InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/gbfs.json")]
+        [InlineData(@"http://hamilton.socialbicycles.com/opendata/gbfs.json")]
+		[InlineData(@"https://api.nextbike.net/maps/gbfs/v1/nextbike_sz/gbfs.json")]
+		public async Task GetAvailableFeedsAsync_GivenBaseUrlWithGbfsJson_ReturnsListOfAvailableFeeds(string endpoint)
+		{
+			var client = new Client(endpoint);
+
+			var clientResponse = await client.GetAvailableFeedsAsync();
+
+			Assert.True(clientResponse.Any());
+		}
+  
+		[Theory]
+        [InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/gbfs.json")]
+		[InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
+        [InlineData(@"http://hamilton.socialbicycles.com/opendata/gbfs.json")]
+        [InlineData(@"https://api.nextbike.net/maps/gbfs/v1/nextbike_sz/gbfs.json")]
+		public async Task GetAvailableLanguagesAsync_GivenBaseUrlWithGbfsJson_ReturnsListOfAvailableLanguages(string endpoint)
+		{
+			var client = new Client(endpoint);
+
+			var clientResponse = await client.GetAvailableLanguagesAsync();
+
+			Assert.NotEmpty(clientResponse);
+		}
+
+		[Theory]
+        [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
+        public async Task GetAvailableLanguagesAsync_GivenBaseUrlWithGbfsJson_ReturnsExpectedLanguage(string endpoint)
+        {
+            var client = new Client(endpoint);
+            
+            var clientResponse = await client.GetAvailableLanguagesAsync();
+
+			Assert.Equal("nb", clientResponse.First().Name);
+        }
+
+		[Theory]
+        [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
+		[InlineData(@"http://hamilton.socialbicycles.com/opendata/")]
+        [InlineData(@"https://api.nextbike.net/maps/gbfs/v1/nextbike_sz/")]
+        public async Task GetAvailableLanguagesAsync_GivenBaseUrlWithGbfsJson_ReturnsExpectedFeed(string endpoint)
+        {
+            var client = new Client(endpoint);
+            
+            var clientResponse = await client.GetAvailableLanguagesAsync();
+
+			Assert.True(clientResponse.Any(f => f.Feeds.Any(n => n.Name.Equals("system_information"))));
+        }
+
+		[Theory]
+		[InlineData(@"http://hamilton.socialbicycles.com/opendata/")]
+        [InlineData(@"https://api.nextbike.net/maps/gbfs/v1/nextbike_sz/")]
+		public async Task GetAvailableLanguagesAsync_GivenBaseUrlWithoutGbfsJson_ReturnsListOfAvailableLanguages(string endpoint)
+        {
+            var client = new Client(endpoint);
+
+            var clientResponse = await client.GetAvailableLanguagesAsync();
+
+            Assert.NotEmpty(clientResponse);
+        }
+
     }
 }

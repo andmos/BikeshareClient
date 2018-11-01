@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <ReleaseVersion>1.0.5</ReleaseVersion>
-    <VersionPrefix>1.0.5</VersionPrefix>
+    <ReleaseVersion>1.1.0</ReleaseVersion>
+    <VersionPrefix>1.1.0</VersionPrefix>
     <Title>BikeshareClient</Title>
     <Authors>andmos</Authors>
     <Description>Dotnet client for bike share systems implementing the General Bikeshare Feed Specification (GBFS).</Description>
@@ -31,5 +31,10 @@
     <Compile Remove="Helpers.cs" />
     <Compile Remove="Helpers\JsonHelper.cs" />
     <Compile Remove="Helpers\MicrosecondEpochConverter.cs" />
+    <Compile Remove="Helpers\GbfsLanguageConverter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="input.py" />
+    <None Remove="Untitled-1" />
   </ItemGroup>
 </Project>
