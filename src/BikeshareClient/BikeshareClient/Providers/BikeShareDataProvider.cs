@@ -79,15 +79,13 @@ namespace BikeshareClient.Providers
 			return new Uri(baseUrl).Append(resource).AbsoluteUri;;
 		}
 
-		private bool DuplicateResourceOnBaseUrl(string baseUrl, string resource)
-		{
-			return baseUrl.EndsWith(resource + JsonExtension, StringComparison.InvariantCulture);
-		}
+		private bool DuplicateResourceOnBaseUrl(string baseUrl, string resource) => 
+		    baseUrl.EndsWith(resource + JsonExtension, StringComparison.InvariantCulture);
 
-		private bool BaseUrlIsGbfsDiscoveryFile(string baseUrl)
-		{
-			return baseUrl.EndsWith(GbfsDiscoveryFile, StringComparison.InvariantCulture);
-		}
+
+		private bool BaseUrlIsGbfsDiscoveryFile(string baseUrl) => 
+		    baseUrl.EndsWith(GbfsDiscoveryFile, StringComparison.InvariantCulture);
+
         
 		private async Task<string> GetResourceUrlFromGbfsDiscoveryFileFeeds(string baseUrl, string resource)
 		{

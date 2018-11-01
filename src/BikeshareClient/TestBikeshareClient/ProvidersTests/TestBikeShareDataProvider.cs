@@ -40,5 +40,13 @@ namespace TestBikeshareClient
 
 			await Assert.ThrowsAsync<NotImplementedException>(async () => await dataProvider.GetBikeShareData<BikeStatusDTO>());
 		}
+
+		[Fact]
+        public async Task GetBikeShareData_GivenWrongBaseUrl_ThrowsNotImplementetdException()
+        {
+			var dataProvider = new BikeShareDataProvider("http://gbfs.urbansharing.com/");
+
+            await Assert.ThrowsAsync<NotImplementedException>(async () => await dataProvider.GetBikeShareData<BikeStatusDTO>());
+        }
     }
 }
