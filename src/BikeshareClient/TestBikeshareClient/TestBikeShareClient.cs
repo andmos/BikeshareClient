@@ -80,6 +80,7 @@ namespace TestBikeshareClient
         [InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/gbfs.json")]
         [InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/gbfs.json")]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/gbfs.json")]
+        [InlineData(@"http://gbfs.urbansharing.com/edinburgh-city-bikes/gbfs.json")]
         public async Task GetStationsStatusAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_ReturnsStationsStatus(string endpoint)
         {
             var client = new Client(endpoint);
@@ -93,6 +94,7 @@ namespace TestBikeshareClient
 		[InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/gbfs.json")]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/gbfs.json")]
 		[InlineData(@"https://api.nextbike.net/maps/gbfs/v1/nextbike_sz/gbfs.json")]
+        [InlineData(@"http://gbfs.urbansharing.com/edinburgh-city-bikes/gbfs.json")]
 		public async Task GetAvailableFeedsAsync_GivenBaseUrlWithGbfsJson_ReturnsListOfAvailableFeeds(string endpoint)
 		{
 			var client = new Client(endpoint);
@@ -107,7 +109,8 @@ namespace TestBikeshareClient
 		[InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/gbfs.json")]
         [InlineData(@"https://api.nextbike.net/maps/gbfs/v1/nextbike_sz/gbfs.json")]
-		public async Task GetAvailableLanguagesAsync_GivenBaseUrlWithGbfsJson_ReturnsListOfAvailableLanguages(string endpoint)
+        [InlineData(@"http://gbfs.urbansharing.com/edinburgh-city-bikes/gbfs.json")]
+        public async Task GetAvailableLanguagesAsync_GivenBaseUrlWithGbfsJson_ReturnsListOfAvailableLanguages(string endpoint)
 		{
 			var client = new Client(endpoint);
 
@@ -131,6 +134,7 @@ namespace TestBikeshareClient
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
 		[InlineData(@"http://hamilton.socialbicycles.com/opendata/")]
         [InlineData(@"https://api.nextbike.net/maps/gbfs/v1/nextbike_sz/")]
+        [InlineData(@"http://gbfs.urbansharing.com/edinburgh-city-bikes/gbfs.json")]
         public async Task GetAvailableLanguagesAsync_GivenBaseUrlWithGbfsJson_ReturnsExpectedFeed(string endpoint)
         {
             var client = new Client(endpoint);
