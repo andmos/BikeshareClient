@@ -6,6 +6,7 @@ using BikeshareClient;
 using BikeshareClient.Providers;
 using BikeshareClient.Models;
 using System.Linq; 
+using System.Threading.Tasks;
 
 await ParseArguments();
 
@@ -15,19 +16,23 @@ private async Task ParseArguments()
     IEnumerable<Station> stations = await GetStations(client);
     if (Args.Any())
     {
-        string stationName = "";
-        foreach (var arg in Args)
+        if (Args[0] != "dryrun")
         {
-            if (stations.Any(s => s.Name.Equals(arg)))
+            string stationName = "";
+            foreach (var arg in Args)
             {
-                stationName = arg;
+                if (stations.Any(s => s.Name.Equals(arg)))
+                {
+                    stationName = arg;
+                }
             }
-        }
-        var availableBikes = await GetAvailableBikes(GetStationId(stationName, stations),client);
-        var availableDocks = await GetAvailableDocks(GetStationId(stationName, stations),client);
+            var availableBikes = await GetAvailableBikes(GetStationId(stationName, stations),client);
+            var availableDocks = await GetAvailableDocks(GetStationId(stationName, stations),client);
 
-        Console.WriteLine($"Available bikes at {stationName}: {availableBikes}");
-        Console.WriteLine($"Available docks at {stationName}: {availableDocks}");
+            Console.WriteLine($"Available bikes at {stationName}: {availableBikes}");
+            Console.WriteLine($"Available docks at {stationName}: {availableDocks}");
+        }
+        return;
     }
     else
     {
