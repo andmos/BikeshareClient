@@ -63,9 +63,13 @@ namespace TestBikeshareClient
 
 			var clientResponse = await client.GetSystemInformationAsync();
 
-			Assert.False(string.IsNullOrEmpty(clientResponse.Id));
-			Assert.False(string.IsNullOrEmpty(clientResponse.Name));
-		}
+			Assert.NotEmpty(clientResponse.Id);
+			Assert.NotEmpty(clientResponse.Name);
+            Assert.NotEmpty(clientResponse.Language);
+            Assert.NotEmpty(clientResponse.Email);
+            Assert.NotEmpty(clientResponse.TimeZone);
+            Assert.NotEmpty(clientResponse.PhoneNumber);
+        }
 
 
 
@@ -133,6 +137,28 @@ namespace TestBikeshareClient
 
             Assert.NotNull(clientResponse.FirstOrDefault().LastReported);
         }
+
+        [Theory]
+        [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
+        public async Task GetStationsStatusAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_ReturnsValidPropertyValues(string endpoint)
+        {
+            var client = new Client(endpoint);
+
+            var clientResponse = await client.GetStationsStatusAsync();
+            var firstStationStatus = clientResponse.FirstOrDefault();
+
+            Assert.NotNull(firstStationStatus.LastReported);
+            Assert.NotEmpty(firstStationStatus.Id);
+            Assert.NotNull(firstStationStatus.Installed);
+            Assert.NotNull(firstStationStatus.BikesAvailable);
+            Assert.NotNull(firstStationStatus.Renting);
+            Assert.NotNull(firstStationStatus.BikesDisabled);
+            Assert.NotNull(firstStationStatus.Returning);
+            Assert.NotNull(firstStationStatus.DocksAvailable);
+
+
+        }
+
 
         [Theory]
 		[InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/gbfs.json")]
