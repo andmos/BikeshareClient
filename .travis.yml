@@ -8,6 +8,9 @@ script:
       docker build -t andmos/bikeshareclient . ;
     else
       docker build --build-arg VERSION_SUFFIX="--version-suffix dev-$TRAVIS_BUILD_NUMBER" -t andmos/bikeshareclient . ; 
-    fi 
+    fi
+after_success:
+  - docker run --rm -v $(pwd):/tmp -it andmos/bikeshareclient cp /app/TestBikeshareClient/coverage.opencover.xml /tmp
+  - bash <(curl -s https://codecov.io/bash)
 after_script: 
   - docker run --rm -it andmos/bikeshareclient dotnet nuget push /app/BikeshareClient/output/BikeshareClient.*.nupkg -k $NUGET_KEY -s https://api.nuget.org/v3/index.json
