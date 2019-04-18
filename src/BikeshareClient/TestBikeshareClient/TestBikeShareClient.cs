@@ -54,6 +54,38 @@ namespace TestBikeshareClient
 
         [Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
+        [InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/")]
+        [InlineData(@"https://gbfs.urbansharing.com/oslobysykkel.no/gbfs.json")]
+        public async Task GetStationsAsync_GivenValidBaseUrl_ReturnsStationWithValidPropertyValues(string baseUrl) 
+        {
+            var client = new Client(baseUrl);
+
+            var clientResponse = await client.GetStationsAsync();
+            var firstStation = clientResponse.FirstOrDefault();
+
+            Assert.NotEmpty(firstStation.Id);
+            Assert.NotEmpty(firstStation.Address);
+            Assert.NotEmpty(firstStation.Name);
+            Assert.True(firstStation.Capacity >= 0);
+            Assert.True(firstStation.Latitude >= 0);
+            Assert.True(firstStation.Longitude >= 0);
+        }
+
+        [Theory]
+        [InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/station_information.json")]
+        [InlineData(@"http://hamilton.socialbicycles.com/opendata/station_information.json")]
+        public async Task GetStationsAsync_GivenNotImplementetCapacityProperty_ReturnsZero(string baseUrl)
+        {
+            var client = new Client(baseUrl);
+
+            var clientResponse = await client.GetStationsAsync();
+            var firstStation = clientResponse.FirstOrDefault();
+
+            Assert.Equal(0, firstStation.Capacity);
+        }
+
+        [Theory]
+        [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
 		[InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/")]
         [InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/")]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/")] 
@@ -149,11 +181,11 @@ namespace TestBikeshareClient
 
             Assert.NotNull(firstStationStatus.LastReported);
             Assert.NotEmpty(firstStationStatus.Id);
-            Assert.NotNull(firstStationStatus.Installed);
+            Assert.InRange(firstStationStatus.Installed, 0, 1);
             Assert.NotNull(firstStationStatus.BikesAvailable);
-            Assert.NotNull(firstStationStatus.Renting);
+            Assert.InRange(firstStationStatus.Renting, 0, 1);
             Assert.NotNull(firstStationStatus.BikesDisabled);
-            Assert.NotNull(firstStationStatus.Returning);
+            Assert.InRange(firstStationStatus.Returning, 0, 1);
             Assert.NotNull(firstStationStatus.DocksAvailable);
 
 
