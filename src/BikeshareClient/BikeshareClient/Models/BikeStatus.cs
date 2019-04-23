@@ -12,15 +12,15 @@ namespace BikeshareClient.Models
 		                  [JsonProperty("name")]string name, 
 		                  [JsonProperty("lat")]double latitude, 
 		                  [JsonProperty("lon")]double longitude, 
-		                  [JsonProperty("is_renting")]int renting, 
-		                  [JsonProperty("is_returning")]int returning)
+		                  [JsonProperty("is_reserved")]int reserved, 
+		                  [JsonProperty("is_disabled")]int disabled)
         {
 			Id = id;
 			Name = name;
 			Latitude = latitude;
 			Longitude = longitude;
-			Renting = renting;
-			Returning = returning;
+			Reserved = reserved;
+            Disabled = disabled;
 		}
 
         public string Id { get; private set; }
@@ -31,8 +31,8 @@ namespace BikeshareClient.Models
 
         public double Longitude { get; private set; }
 
-        public int Renting { get; private set; }
+        public int Reserved { get; private set; }
 
-        public int Returning { get; private set; }
+        public int Disabled { get; private set; }
     }
 }

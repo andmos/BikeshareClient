@@ -109,6 +109,7 @@ namespace TestBikeshareClient
 		[Theory]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/")]
         [InlineData(@"http://coast.socialbicycles.com/opendata/")]
+        [InlineData(@"http://ubike.virginia.edu/opendata")]
         public async Task GetBikeStatusAsync_GivenCorrectBaseUrl_ReturnsBikesStatus(string endpoint)
         {
 			var client = new Client(endpoint);
@@ -130,7 +131,24 @@ namespace TestBikeshareClient
             Assert.True(clientRespons.Any());
         }
 
-		[Theory]
+        [Theory]
+        [InlineData(@"http://hamilton.socialbicycles.com/opendata/gbfs.json")]
+        [InlineData(@"http://coast.socialbicycles.com/opendata/gbfs.json")]
+        [InlineData(@"http://ubike.virginia.edu/opendata")]
+        public async Task GetBikeStatusAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_ReturnsValidPropertyValues(string endpoint)
+        {
+            var client = new Client(endpoint);
+
+            var clientRespons = await client.GetBikeStatusAsync();
+            var firstBikeStatus = clientRespons.FirstOrDefault();
+
+            Assert.InRange(firstBikeStatus.Disabled, 0, 1);
+            Assert.InRange(firstBikeStatus.Reserved, 0, 1);
+            Assert.NotEmpty(firstBikeStatus.Id);
+            Assert.NotEmpty(firstBikeStatus.Name);
+        }
+
+        [Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
 		[InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/")]
         [InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/")]
