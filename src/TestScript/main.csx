@@ -1,6 +1,6 @@
 #! "netcoreapp2.0"
 
-#r "nuget: BikeshareClient, 1.1.0"
+#r "nuget: BikeshareClient, 3.0.0"
 
 using BikeshareClient;
 using BikeshareClient.Providers;
@@ -37,7 +37,7 @@ private async Task ParseArguments()
     else
     {
         Console.WriteLine("Stations:");
-        foreach(var station in stations.Select(s => s.Name))
+        foreach(var station in stations.Where(s => s.Capacity > 0).Select(s => s.Name))
         {
             Console.WriteLine($"{station}");
         }
@@ -60,17 +60,23 @@ private async Task<int> GetAvailableBikes(string stationId, Client client)
 {
     var stations = await client.GetStationsStatusAsync();
 
-    var availableBikes = stations.FirstOrDefault(s => s.Id.Equals(stationId)).BikesAvailable;
-
-    return availableBikes; 
+    var station = stations.FirstOrDefault(s => s.Id.Equals(stationId));
+    if(station.Renting)
+    {
+        return station.BikesAvailable;
+    }
+    return 0;    
 }
 
 private async Task<int> GetAvailableDocks(string stationId, Client client)
 {
     var stations = await client.GetStationsStatusAsync();
 
-    var availableDocks = stations.FirstOrDefault(s => s.Id.Equals(stationId)).DocksAvailable;
-
-    return availableDocks; 
+    var station = stations.FirstOrDefault(s => s.Id.Equals(stationId));
+    if(station.Returning)
+    {
+        return station.DocksAvailable;
+    }
+    return 0; 
 }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using BikeshareClient.Helpers;
 using Newtonsoft.Json;
 
 namespace BikeshareClient.Models
@@ -12,8 +13,8 @@ namespace BikeshareClient.Models
 		                  [JsonProperty("name")]string name, 
 		                  [JsonProperty("lat")]double latitude, 
 		                  [JsonProperty("lon")]double longitude, 
-		                  [JsonProperty("is_reserved")]int reserved, 
-		                  [JsonProperty("is_disabled")]int disabled)
+		                  [JsonProperty("is_reserved"), JsonConverter(typeof(IntegerToBoolConverter))] bool reserved, 
+		                  [JsonProperty("is_disabled"), JsonConverter(typeof(IntegerToBoolConverter))] bool disabled)
         {
 			Id = id;
 			Name = name;
@@ -31,8 +32,8 @@ namespace BikeshareClient.Models
 
         public double Longitude { get; private set; }
 
-        public int Reserved { get; private set; }
+        public bool Reserved { get; private set; }
 
-        public int Disabled { get; private set; }
+        public bool Disabled { get; private set; }
     }
 }

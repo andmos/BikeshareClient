@@ -104,8 +104,6 @@ namespace TestBikeshareClient
         }
 
 
-
-
 		[Theory]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/")]
         [InlineData(@"http://coast.socialbicycles.com/opendata/")]
@@ -142,8 +140,8 @@ namespace TestBikeshareClient
             var clientRespons = await client.GetBikeStatusAsync();
             var firstBikeStatus = clientRespons.FirstOrDefault();
 
-            Assert.InRange(firstBikeStatus.Disabled, 0, 1);
-            Assert.InRange(firstBikeStatus.Reserved, 0, 1);
+            Assert.IsType<bool>(firstBikeStatus.Disabled);
+            Assert.IsType<bool>(firstBikeStatus.Reserved);
             Assert.NotEmpty(firstBikeStatus.Id);
             Assert.NotEmpty(firstBikeStatus.Name);
         }
@@ -179,6 +177,36 @@ namespace TestBikeshareClient
 
         [Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
+        [InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/gbfs.json")]
+        [InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/gbfs.json")]
+        [InlineData(@"http://hamilton.socialbicycles.com/opendata/gbfs.json")]
+        [InlineData(@"http://gbfs.urbansharing.com/edinburgh-city-bikes/gbfs.json")]
+        public async Task GetStationsStatusAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_HasReturningStations(string endpoint)
+        {
+            var client = new Client(endpoint);
+
+            var clientRespons = await client.GetStationsStatusAsync();
+
+            Assert.True(clientRespons.Any(s => s.Returning));
+        }
+
+        [Theory]
+        [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
+        [InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/gbfs.json")]
+        [InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/gbfs.json")]
+        [InlineData(@"http://hamilton.socialbicycles.com/opendata/gbfs.json")]
+        [InlineData(@"http://gbfs.urbansharing.com/edinburgh-city-bikes/gbfs.json")]
+        public async Task GetStationsStatusAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_HasRentingStations(string endpoint)
+        {
+            var client = new Client(endpoint);
+
+            var clientRespons = await client.GetStationsStatusAsync();
+
+            Assert.True(clientRespons.Any(s => s.Renting));
+        }
+
+        [Theory]
+        [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
         public async Task GetStationsStatusAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_ReturnsLastReported(string endpoint) 
         {
             var client = new Client(endpoint);
@@ -199,11 +227,11 @@ namespace TestBikeshareClient
 
             Assert.NotNull(firstStationStatus.LastReported);
             Assert.NotEmpty(firstStationStatus.Id);
-            Assert.InRange(firstStationStatus.Installed, 0, 1);
+            Assert.True(firstStationStatus.Installed);
             Assert.NotNull(firstStationStatus.BikesAvailable);
-            Assert.InRange(firstStationStatus.Renting, 0, 1);
+            Assert.IsType<bool>(firstStationStatus.Renting);
             Assert.NotNull(firstStationStatus.BikesDisabled);
-            Assert.InRange(firstStationStatus.Returning, 0, 1);
+            Assert.IsType<bool>(firstStationStatus.Returning);
             Assert.NotNull(firstStationStatus.DocksAvailable);
 
 

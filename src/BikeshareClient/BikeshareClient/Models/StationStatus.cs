@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using BikeshareClient.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -13,9 +14,9 @@ namespace BikeshareClient.Models
 		                     [JsonProperty("num_bikes_available")] int bikesAvailable,
 		                     [JsonProperty("num_bikes_disabled")] int bikesDisabled,
 		                     [JsonProperty("num_docks_available")]int docksAvailable, 
-		                     [JsonProperty("is_installed")]int installed,
-		                     [JsonProperty("is_renting")]int renting,
-		                     [JsonProperty("is_returning")]int returning, 
+		                     [JsonProperty("is_installed"),JsonConverter(typeof(IntegerToBoolConverter))]bool installed,
+		                     [JsonProperty("is_renting"), JsonConverter(typeof(IntegerToBoolConverter))]bool renting,
+		                     [JsonProperty("is_returning"), JsonConverter(typeof(IntegerToBoolConverter))]bool returning, 
 		                     [JsonProperty("num_docks_disabled")]int docsDisabled,
 		                     [JsonProperty("last_reported"), JsonConverter(typeof(UnixDateTimeConverter))] DateTime lastReported)
         {
@@ -38,11 +39,11 @@ namespace BikeshareClient.Models
 
 		public int DocksAvailable { get; }
 
-		public int Installed { get; }
+		public bool Installed { get; }
 
-		public int Renting { get; }
+		public bool Renting { get; }
 
-		public int Returning { get; }
+		public bool Returning { get; }
 
 		public int DocksDisabled { get; }
 
