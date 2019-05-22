@@ -1,6 +1,6 @@
 #! "netcoreapp2.0"
 
-#r "nuget: BikeshareClient, 3.0.0"
+#r "nuget: BikeshareClient, 3.0.1"
 
 using BikeshareClient;
 using BikeshareClient.Providers;
