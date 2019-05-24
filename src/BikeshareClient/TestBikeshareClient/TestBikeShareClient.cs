@@ -107,7 +107,7 @@ namespace TestBikeshareClient
 		[Theory]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/")]
         [InlineData(@"http://coast.socialbicycles.com/opendata/")]
-        [InlineData(@"http://ubike.virginia.edu/opendata")]
+        [InlineData(@"https://reddybikeshare.socialbicycles.com/opendata/gbfs.json")]
         public async Task GetBikeStatusAsync_GivenCorrectBaseUrl_ReturnsBikesStatus(string endpoint)
         {
 			var client = new Client(endpoint);
@@ -132,7 +132,7 @@ namespace TestBikeshareClient
         [Theory]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/gbfs.json")]
         [InlineData(@"http://coast.socialbicycles.com/opendata/gbfs.json")]
-        [InlineData(@"http://ubike.virginia.edu/opendata")]
+        [InlineData(@"https://reddybikeshare.socialbicycles.com/opendata/gbfs.json")]
         public async Task GetBikeStatusAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_ReturnsValidPropertyValues(string endpoint)
         {
             var client = new Client(endpoint);
