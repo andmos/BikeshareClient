@@ -7,7 +7,7 @@
     <Title>BikeshareClient</Title>
     <Authors>andmos</Authors>
     <Description>Dotnet client for bike share systems implementing the General Bikeshare Feed Specification (GBFS).</Description>
-    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/andmos/BikeshareClient</PackageProjectUrl>
   </PropertyGroup>
 
@@ -25,16 +25,5 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Class1.cs" />
-    <Compile Remove="Helpers.cs" />
-    <Compile Remove="Helpers\JsonHelper.cs" />
-    <Compile Remove="Helpers\MicrosecondEpochConverter.cs" />
-    <Compile Remove="Helpers\GbfsLanguageConverter.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="input.py" />
-    <None Remove="Untitled-1" />
   </ItemGroup>
 </Project>
