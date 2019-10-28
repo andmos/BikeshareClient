@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BikeshareClient.Models;
 using BikeshareClient.DTO;
 using BikeshareClient.Providers;
-using System.Linq; 
+using System.Linq;
+using System.Net.Http;
 
 namespace BikeshareClient
 {
@@ -13,10 +13,10 @@ namespace BikeshareClient
 		private readonly string _gbfsBaseUrl;
 		private readonly BikeShareDataProvider _bikeShareDataProvider; 
         
-		public Client(string gbfsBaseUrl)
+		public Client(string gbfsBaseUrl, HttpClient httpClient = null)
         {
 			_gbfsBaseUrl = gbfsBaseUrl;
-			_bikeShareDataProvider = new BikeShareDataProvider(_gbfsBaseUrl);
+			_bikeShareDataProvider = new BikeShareDataProvider(_gbfsBaseUrl, httpClient);
 		}
 
 		public async Task<IEnumerable<Feed>> GetAvailableFeedsAsync()

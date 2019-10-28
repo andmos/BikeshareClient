@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using BikeshareClient.Providers;
 using BikeshareClient.DTO;
 using Xunit;
+using System.Net.Http;
 namespace TestBikeshareClient
 {
     public class TestBikeShareDataProvider
@@ -19,10 +20,57 @@ namespace TestBikeshareClient
             Assert.NotEqual(DateTime.MinValue, stationDto.LastUpdated);
         }
 
+        [Theory]
+        [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
+        public async Task GetBikeshareData_GivenBaseUrlAndHttpClient_ReturnsValidResponse(string endpoint)
+        {
+            var httpClient = new HttpClient();
+            var dataProvider = new BikeShareDataProvider(endpoint, httpClient);
+
+            var stationDto = await dataProvider.GetBikeShareData<StationDTO>();
+
+            Assert.True(stationDto.TimeToLive != 0);
+            Assert.NotEqual(DateTime.MinValue, stationDto.LastUpdated);
+        }
+
+        [Theory]
+        [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
+        public async Task GetBikeshareData_GivenInvalidBaseUrlAndHttpClientWithValidBaseUrl_ReturnsValidResponse(string endpoint)
+        {
+            var httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(endpoint);
+            var dataProvider = new BikeShareDataProvider("http://gbfs.urbansharing.com", httpClient);
+
+            var stationDto = await dataProvider.GetBikeShareData<StationDTO>();
+
+            Assert.True(stationDto.TimeToLive != 0);
+            Assert.NotEqual(DateTime.MinValue, stationDto.LastUpdated);
+        }
+
+        [Theory]
+        [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
+        public async Task GetBikeshareData_GivenEmptyBaseUrlAndHttpClientWithValidBaseUrl_ReturnsValidResponse(string endpoint)
+        {
+            var httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(endpoint);
+            var dataProvider = new BikeShareDataProvider("", httpClient);
+
+            var stationDto = await dataProvider.GetBikeShareData<StationDTO>();
+
+            Assert.True(stationDto.TimeToLive != 0);
+            Assert.NotEqual(DateTime.MinValue, stationDto.LastUpdated);
+        }
+
         [Fact]
         public void GetBikeShareData_GivenEmptyBaseUrl_ThrowsArgumentNullExpection()
         {
             Assert.Throws<ArgumentNullException>(() => new BikeShareDataProvider(""));
+        }
+
+        [Fact]
+        public void GetBikeShareData_GivenEmptyBaseUrlAndHTTPClientWithEmptyBaseUrl_ThrowsArgumentNullExpection()
+        {
+            Assert.Throws<ArgumentNullException>(() => new BikeShareDataProvider("", new HttpClient()));
         }
 
         [Fact]
@@ -48,5 +96,7 @@ namespace TestBikeshareClient
 
             await Assert.ThrowsAsync<NotImplementedException>(async () => await dataProvider.GetBikeShareData<BikeStatusDTO>());
         }
+
+
     }
 }
