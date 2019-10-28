@@ -17,14 +17,17 @@ namespace BikeshareClient.Providers
         private const string GbfsDiscoveryFile = GbfsDiscovery + JsonExtension;
         private readonly HttpClient _httpClient;
 
-        public BikeShareDataProvider(string gbfsBaseUrl)
+        public BikeShareDataProvider(string gbfsBaseUrl, HttpClient httpClient = null)
         {
-            if (string.IsNullOrEmpty(gbfsBaseUrl))
+            if (string.IsNullOrEmpty(gbfsBaseUrl) && httpClient?.BaseAddress == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException($"{nameof(gbfsBaseUrl)} must be set to valid GBFS address, or HttpClient with GBFS BaseAddress set.");
             }
-            _gbfsBaseUrl = gbfsBaseUrl;
-            _httpClient = new HttpClient();
+
+             _gbfsBaseUrl = httpClient?.BaseAddress?.ToString() ?? gbfsBaseUrl;
+            
+            _httpClient = httpClient ?? new HttpClient();
+            
         }
 
         public async Task<T> GetBikeShareData<T>()
@@ -78,7 +81,7 @@ namespace BikeshareClient.Providers
             }
 
             resource += JsonExtension;
-            return new Uri(baseUrl).Append(resource).AbsoluteUri; ;
+            return new Uri(baseUrl).Append(resource).AbsoluteUri;
         }
 
         private bool DuplicateResourceOnBaseUrl(string baseUrl, string resource) =>
@@ -104,7 +107,6 @@ namespace BikeshareClient.Providers
                 throw new NotImplementedException($"Could not find any {resource.Value}, {baseUrl} returned status code {response.StatusCode}");
             }
             return JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
-
         }
     }
 }

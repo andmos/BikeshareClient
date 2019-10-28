@@ -2,6 +2,8 @@
 using BikeshareClient;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Net.Http;
+using System;
 
 namespace TestBikeshareClient
 {
@@ -21,6 +23,39 @@ namespace TestBikeshareClient
 
 			Assert.True(stations.Any()); 
 		}
+
+        [Theory]
+        [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
+        [InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/")]
+        [InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/")]
+        [InlineData(@"http://hamilton.socialbicycles.com/opendata/")]
+        public async Task GetStationsAsync_GivenValidBaseUrlAndHttpClient_ReturnsStations(string baseUrl)
+        {
+            var httpClient = new HttpClient();
+            var client = new Client(baseUrl, httpClient);
+
+            var clientResponse = await client.GetStationsAsync();
+            var stations = clientResponse.ToList();
+
+            Assert.True(stations.Any());
+        }
+
+        [Theory]
+        [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
+        [InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/")]
+        [InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/")]
+        [InlineData(@"http://hamilton.socialbicycles.com/opendata/")]
+        public async Task GetStationsAsync_GivenEmptyBaseUrlAndHttpClientWithValidBaseUrl_ReturnsStations(string baseUrl)
+        {
+            var httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(baseUrl);
+            var client = new Client("", httpClient);
+
+            var clientResponse = await client.GetStationsAsync();
+            var stations = clientResponse.ToList();
+
+            Assert.True(stations.Any());
+        }
 
         [Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
