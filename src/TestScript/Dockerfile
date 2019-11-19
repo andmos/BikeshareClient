@@ -1,7 +1,9 @@
 FROM andmos/dotnet-script
 
-COPY main.csx /scripts/main.csx
+WORKDIR /scripts/
 
-RUN ["dotnet", "/dotnet-script/dotnet-script.dll", "main.csx" , "dryrun"]
+COPY main.csx main.csx
 
-ENTRYPOINT ["dotnet", "/dotnet-script/dotnet-script.dll", "main.csx"] 
+RUN ["dotnet", "script", "main.csx" , "dryrun"]
+
+ENTRYPOINT ["dotnet", "script", "main.csx"] 
