@@ -9,12 +9,13 @@ namespace BikeshareClient.Models
     public class BikeStatus
     {
 		[JsonConstructor]
-		public BikeStatus([JsonProperty("bike_id")]string id,
-		                  [JsonProperty("name")]string name, 
-		                  [JsonProperty("lat")]double latitude, 
-		                  [JsonProperty("lon")]double longitude, 
-		                  [JsonProperty("is_reserved"), JsonConverter(typeof(IntegerToBoolConverter))] bool reserved, 
-		                  [JsonProperty("is_disabled"), JsonConverter(typeof(IntegerToBoolConverter))] bool disabled)
+		public BikeStatus(
+			[JsonProperty("bike_id")]string id,
+			[JsonProperty("name")]string name, 
+			[JsonProperty("lat")]double latitude, 
+			[JsonProperty("lon")]double longitude, 
+			[JsonProperty("is_reserved"), JsonConverter(typeof(IntegerToBoolConverter))] bool reserved, 
+			[JsonProperty("is_disabled"), JsonConverter(typeof(IntegerToBoolConverter))] bool disabled)
         {
 			Id = id;
 			Name = name;

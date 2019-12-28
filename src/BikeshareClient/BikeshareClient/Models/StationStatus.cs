@@ -10,15 +10,16 @@ namespace BikeshareClient.Models
     public class StationStatus
     {
 		[JsonConstructor]
-		public StationStatus([JsonProperty("station_id")] string id,
-		                     [JsonProperty("num_bikes_available")] int bikesAvailable,
-		                     [JsonProperty("num_bikes_disabled")] int bikesDisabled,
-		                     [JsonProperty("num_docks_available")]int docksAvailable, 
-		                     [JsonProperty("is_installed"),JsonConverter(typeof(IntegerToBoolConverter))]bool installed,
-		                     [JsonProperty("is_renting"), JsonConverter(typeof(IntegerToBoolConverter))]bool renting,
-		                     [JsonProperty("is_returning"), JsonConverter(typeof(IntegerToBoolConverter))]bool returning, 
-		                     [JsonProperty("num_docks_disabled")]int docsDisabled,
-		                     [JsonProperty("last_reported"), JsonConverter(typeof(UnixDateTimeConverter))] DateTime lastReported)
+		public StationStatus(
+			[JsonProperty("station_id")] string id,
+			[JsonProperty("num_bikes_available")] int bikesAvailable,
+			[JsonProperty("num_bikes_disabled")] int bikesDisabled,
+			[JsonProperty("num_docks_available")]int docksAvailable, 
+			[JsonProperty("is_installed"),JsonConverter(typeof(IntegerToBoolConverter))]bool installed,
+			[JsonProperty("is_renting"), JsonConverter(typeof(IntegerToBoolConverter))]bool renting,
+			[JsonProperty("is_returning"), JsonConverter(typeof(IntegerToBoolConverter))]bool returning, 
+			[JsonProperty("num_docks_disabled")]int docsDisabled,
+			[JsonProperty("last_reported"), JsonConverter(typeof(UnixDateTimeConverter))] DateTime lastReported)
         {
 			Id = id;
 			BikesAvailable = bikesAvailable;

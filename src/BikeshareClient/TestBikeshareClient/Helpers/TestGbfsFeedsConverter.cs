@@ -12,7 +12,7 @@ namespace TestBikeshareClient.Helpers
 		private readonly string TestFile = @"Helpers/TestableGbfsJson.json";
 
 		[Fact]
-		public void FeedsConverter_GivenValidGbfsJsonFile_ShouldReturnFeedsData()
+		public void ReadJson_GivenValidGbfsJsonFile_ShouldReturnFeedsData()
 		{
 			var gbfsObject = JsonConvert.DeserializeObject<GbfsDTO>(File.ReadAllText(TestFile));
 
@@ -20,7 +20,7 @@ namespace TestBikeshareClient.Helpers
 		}
 
 		[Fact]
-		public void FeedsConverter_GivenValidGbfsJsonFile_ShouldReturnFeedsDataWithLanguages()
+		public void ReadJson_GivenValidGbfsJsonFile_ShouldReturnFeedsDataWithLanguages()
 		{
 			var gbfsObject = JsonConvert.DeserializeObject<GbfsDTO>(File.ReadAllText(TestFile));
 

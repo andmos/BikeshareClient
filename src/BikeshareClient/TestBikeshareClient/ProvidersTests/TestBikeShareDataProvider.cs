@@ -4,6 +4,8 @@ using BikeshareClient.Providers;
 using BikeshareClient.DTO;
 using Xunit;
 using System.Net.Http;
+using BikeshareClient.Helpers;
+
 namespace TestBikeshareClient
 {
     public class TestBikeShareDataProvider
@@ -97,6 +99,15 @@ namespace TestBikeshareClient
             await Assert.ThrowsAsync<NotImplementedException>(async () => await dataProvider.GetBikeShareData<BikeStatusDTO>());
         }
 
+        [Fact]
+        public async Task GetBikeShareData_GivenBaseUrlWithoutVersionAttribute_ReturnsDefaultVersion()
+        {
+            var defaultVersion = new SemanticVersion("1.0");
+            var dataProvider = new BikeShareDataProvider("http://gbfs.urbansharing.com/trondheim/");
 
+            var gbfsDTO = await dataProvider.GetBikeShareData<GbfsDTO>();
+
+            Assert.True(Equals(gbfsDTO.Version, defaultVersion));
+        }
     }
 }

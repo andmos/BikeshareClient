@@ -8,12 +8,13 @@ namespace BikeshareClient.Models
     public class Station
     {
         [JsonConstructor]
-        public Station([JsonProperty("station_id")] string id,
-                       [JsonProperty("name"), JsonConverter(typeof(TrimmingConverter))] string name,
-                       [JsonProperty("address")] string address,
-                       [JsonProperty("lat")] double latitude,
-                       [JsonProperty("lon")] double longitude,
-                       [JsonProperty("capacity")] int capacity)
+        public Station(
+            [JsonProperty("station_id")] string id,
+            [JsonProperty("name"), JsonConverter(typeof(TrimmingConverter))] string name,
+            [JsonProperty("address")] string address,
+            [JsonProperty("lat")] double latitude,
+            [JsonProperty("lon")] double longitude,
+            [JsonProperty("capacity")] int capacity)
         {
             Id = id;
             Name = name;
