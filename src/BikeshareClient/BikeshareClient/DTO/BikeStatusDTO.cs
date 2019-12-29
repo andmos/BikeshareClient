@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using BikeshareClient.Helpers;
 using BikeshareClient.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -9,18 +11,24 @@ namespace BikeshareClient.DTO
 	internal readonly struct BikeStatusDTO
     {
 		[JsonConstructor]
-		public BikeStatusDTO([JsonProperty("last_updated"), JsonConverter(typeof(UnixDateTimeConverter))]DateTime lastUpdate, 
-		                     [JsonProperty("ttl")] int timeToLive, 
-		                     [JsonProperty("data")] BikeStatusData bikeData)
+		public BikeStatusDTO(
+			[JsonProperty("last_updated"), JsonConverter(typeof(UnixDateTimeConverter))]DateTime lastUpdate, 
+			[JsonProperty("ttl")] int timeToLive,
+			[JsonProperty("version"), JsonConverter(typeof(StringToSemanticVersionConverter))] SemanticVersion version, 
+			[JsonProperty("data")] BikeStatusData bikeData)
         {
 			LastUpdated = lastUpdate;
 			TimeToLive = timeToLive;
-			BikeStatusData = bikeData; 
+            Version = version ?? new SemanticVersion("1.0");
+            BikeStatusData = bikeData;
+
 		}
 
-        public DateTime LastUpdated { get; }
+		public DateTime LastUpdated { get; }
 
-        public int TimeToLive { get; }
+		public int TimeToLive { get; }
+
+		public SemanticVersion Version { get; }
 
 		public BikeStatusData BikeStatusData { get; }
 	}

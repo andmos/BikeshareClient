@@ -10,7 +10,7 @@ namespace TestBikeshareClient.Helpers
     {
 
         [Fact]
-        public void TrimmingConverter_GivenJsonWithWhiteSpace_TrimsTestProperty() 
+        public void ReadJson_GivenJsonWithWhiteSpace_TrimsTestProperty() 
         {
             string testJsonString = "{\"key\": \"Value  \"}";
 
@@ -20,7 +20,7 @@ namespace TestBikeshareClient.Helpers
         }
 
         [Fact]
-        public void TrimmingConverter_GivenStationInformationJsonWithTrailingSpace_TrimsAddress() 
+        public void ReadJson_GivenStationInformationJsonWithTrailingSpace_TrimsAddress() 
         {
             string testStationInformationJson = "{\"station_id\": \"293\", \"name\": \"S. P. Andersens vei   \", \"address\": \"S. P. Andersens vei\", \"lat\": 63.409888448864876, \"lon\": 10.405212902563903, \"capacity\": 18}";
 

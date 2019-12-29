@@ -11,17 +11,22 @@ namespace BikeshareClient.DTO
 	internal readonly struct GbfsDTO
     {
         [JsonConstructor]
-        public GbfsDTO([JsonProperty("last_updated"), JsonConverter(typeof(UnixDateTimeConverter))] DateTime lastUpdated,
-                       [JsonProperty("ttl")] int timeToLive,
-                       [JsonProperty("data"), JsonConverter(typeof(FeedsConverter))] FeedsData[] feedsData)
+        public GbfsDTO(
+            [JsonProperty("last_updated"), JsonConverter(typeof(UnixDateTimeConverter))] DateTime lastUpdated,
+            [JsonProperty("ttl")] int timeToLive,
+            [JsonProperty("version"), JsonConverter(typeof(StringToSemanticVersionConverter))] SemanticVersion version,
+            [JsonProperty("data"), JsonConverter(typeof(FeedsConverter))] FeedsData[] feedsData)
         {
             LastUpdated = lastUpdated;
             TimeToLive = timeToLive;
+            Version = version ?? new SemanticVersion("1.0");
             FeedsData = feedsData;
         }
         public DateTime LastUpdated { get; }
 
         public int TimeToLive { get; }
+
+        public SemanticVersion Version { get; }
 
         public FeedsData[] FeedsData { get; }
 

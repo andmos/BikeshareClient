@@ -8,13 +8,14 @@ namespace BikeshareClient.Models
     public class SystemInformation
     {   
 		[JsonConstructor]
-		public SystemInformation([JsonProperty("system_id")] string id, 
-		                         [JsonProperty("name")] string name, 
-		                         [JsonProperty("language")]string language, 
-		                         [JsonProperty("operator")]string operatorName,
-		                         [JsonProperty("timezone")]string timeZone, 
-		                         [JsonProperty("phone_number")]string phoneNumber,
-		                         [JsonProperty("email")] string email)
+		public SystemInformation(
+			[JsonProperty("system_id")] string id, 
+			[JsonProperty("name")] string name, 
+			[JsonProperty("language")]string language, 
+			[JsonProperty("operator")]string operatorName,
+			[JsonProperty("timezone")]string timeZone, 
+			[JsonProperty("phone_number")]string phoneNumber,
+			[JsonProperty("email")] string email)
 		{
 			Id = id;
 			Name = name;
