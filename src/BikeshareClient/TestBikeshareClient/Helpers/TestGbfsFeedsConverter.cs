@@ -27,7 +27,6 @@ namespace TestBikeshareClient.Helpers
 			var firstLanguage = gbfsObject.FeedsData.Select(l => l.Language).FirstOrDefault();
 
 			Assert.Equal("ar", firstLanguage.Name);
-
 		}
     }
 }

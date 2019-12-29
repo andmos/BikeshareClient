@@ -1,12 +1,9 @@
-﻿using System;
-using Xunit;
+﻿using Xunit;
 using Newtonsoft.Json;
 using BikeshareClient.DTO;
-using System.Linq;
 using System.IO;
 using BikeshareClient.Helpers;
-using System.Collections;
-using System.Collections.Generic;
+using System;
 
 namespace TestBikeshareClient.Helpers
 {
@@ -32,7 +29,14 @@ namespace TestBikeshareClient.Helpers
 
             Assert.True(testObject.Version.Version.Major == 1);
             Assert.True(testObject.Version.Version.Minor == 0);
+        }
 
+        [Fact]
+        public void WriteJson_GivenSemanticVersion_ThrowsNotImplementedException()
+        {
+           var testObject = new TestObject { Version = new SemanticVersion("1.2.3") };
+
+           Assert.Throws<NotImplementedException>(() => JsonConvert.SerializeObject(testObject));
         }
 
         private class TestObject
