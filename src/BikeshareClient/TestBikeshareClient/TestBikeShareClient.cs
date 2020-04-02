@@ -211,7 +211,6 @@ namespace TestBikeshareClient
         [Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
         [InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/gbfs.json")]
-        [InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/gbfs.json")]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/gbfs.json")]
         [InlineData(@"http://gbfs.urbansharing.com/edinburgh-city-bikes/gbfs.json")]
         public async Task GetStationsStatusAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_HasReturningStations(string endpoint)
@@ -226,7 +225,6 @@ namespace TestBikeshareClient
         [Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
         [InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/gbfs.json")]
-        [InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/gbfs.json")]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/gbfs.json")]
         [InlineData(@"http://gbfs.urbansharing.com/edinburgh-city-bikes/gbfs.json")]
         public async Task GetStationsStatusAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_HasRentingStations(string endpoint)
