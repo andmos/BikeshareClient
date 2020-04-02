@@ -13,6 +13,10 @@ Supports the required fields in the GBFS standard for now.
 // Create the client from a GBFS API URL.
 IBikeshareClient client = new Client("http://gbfs.urbansharing.com/trondheim/gbfs.json");
 
+
+// Or with an existing HTTPClient
+IBikeshareClient client = new Client("http://gbfs.urbansharing.com/trondheim/gbfs.json", httpClient);
+
 // All available stations, containing name, id, lat, long, address and capacity
 var stations = await client.GetStationsAsync();
 
