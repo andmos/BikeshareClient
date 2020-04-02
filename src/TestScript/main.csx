@@ -1,4 +1,4 @@
-#r "nuget: BikeshareClient, 3.1.0"
+#r "nuget: BikeshareClient, 3.2.0"
 
 using BikeshareClient;
 using BikeshareClient.Providers;
@@ -10,7 +10,7 @@ await ParseArguments();
 
 private async Task ParseArguments()
 {
-    Client client = new Client("http://gbfs.urbansharing.com/trondheim/gbfs.json");
+    IBikeshareClient client = new Client("http://gbfs.urbansharing.com/trondheim/gbfs.json");
     IEnumerable<Station> stations = await GetStations(client);
     if (Args.Any())
     {
@@ -42,7 +42,7 @@ private async Task ParseArguments()
     }
 }
 
-private async Task<IEnumerable<Station>> GetStations(Client client)
+private async Task<IEnumerable<Station>> GetStations(IBikeshareClient client)
 {
     var stations = await client.GetStationsAsync();
 
@@ -54,7 +54,7 @@ private string GetStationId(string stationName, IEnumerable<Station> stations)
     return stations.SingleOrDefault(s => s.Name.Equals(stationName)).Id; 
 }
 
-private async Task<int> GetAvailableBikes(string stationId, Client client)
+private async Task<int> GetAvailableBikes(string stationId, IBikeshareClient client)
 {
     var stations = await client.GetStationsStatusAsync();
 
@@ -66,7 +66,7 @@ private async Task<int> GetAvailableBikes(string stationId, Client client)
     return 0;    
 }
 
-private async Task<int> GetAvailableDocks(string stationId, Client client)
+private async Task<int> GetAvailableDocks(string stationId, IBikeshareClient client)
 {
     var stations = await client.GetStationsStatusAsync();
 
