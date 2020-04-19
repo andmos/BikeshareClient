@@ -24,7 +24,7 @@ namespace BikeshareClient.Providers
                 throw new ArgumentNullException($"{nameof(gbfsBaseUrl)} must be set to valid GBFS address, or HttpClient with GBFS BaseAddress set.");
             }
 
-             _gbfsBaseUrl = httpClient?.BaseAddress?.ToString() ?? gbfsBaseUrl;
+            _gbfsBaseUrl = httpClient?.BaseAddress?.ToString() ?? gbfsBaseUrl;
             
             _httpClient = httpClient ?? new HttpClient();
             
@@ -32,7 +32,7 @@ namespace BikeshareClient.Providers
 
         public async Task<T> GetBikeShareData<T>()
         {
-            return await GetProviderDTOAsync<T>(FindResourceType<T>());
+            return await GetProviderDtoAsync<T>(FindResourceType<T>());
         }
 
         private static KeyValuePair<string, string> FindResourceType<T>()
@@ -54,7 +54,7 @@ namespace BikeshareClient.Providers
             }
         }
 
-        private async Task<T> GetProviderDTOAsync<T>(KeyValuePair<string, string> resource)
+        private async Task<T> GetProviderDtoAsync<T>(KeyValuePair<string, string> resource)
         {
             if (string.IsNullOrEmpty(resource.Key))
             {
@@ -63,7 +63,7 @@ namespace BikeshareClient.Providers
 
             var requestUrl = await CreateGbfsRequestUrl(resource.Key);
 
-            return await GetProviderDTOFromRequest<T>(requestUrl, resource);
+            return await GetProviderDtoFromRequest<T>(requestUrl, resource);
         }
 
         private async Task<string> CreateGbfsRequestUrl(string resource)
@@ -94,12 +94,12 @@ namespace BikeshareClient.Providers
 
         private async Task<string> GetResourceUrlFromGbfsDiscoveryFileFeeds(string baseUrl, string resource)
         {
-            var gbfsDiscoveryResponse = await GetProviderDTOFromRequest<GbfsDTO>(baseUrl, FindResourceType<GbfsDTO>());
+            var gbfsDiscoveryResponse = await GetProviderDtoFromRequest<GbfsDTO>(baseUrl, FindResourceType<GbfsDTO>());
             return baseUrl = new Uri(
                 gbfsDiscoveryResponse.FeedsData.SelectMany(l => l.Language.Feeds.ToList()).FirstOrDefault(f => f.Name.Equals(resource)).Url).AbsoluteUri;
         }
 
-        private async Task<T> GetProviderDTOFromRequest<T>(string baseUrl, KeyValuePair<string, string> resource)
+        private async Task<T> GetProviderDtoFromRequest<T>(string baseUrl, KeyValuePair<string, string> resource)
         {
             var response = await _httpClient.GetAsync(baseUrl);
             if (!response.IsSuccessStatusCode)
