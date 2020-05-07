@@ -38,7 +38,7 @@ Run test script:
 docker run --rm -it -v $(pwd)/src/TestScript/:/scripts  andmos/dotnet-script main.csx "Skansen"
 ```
 
-[![Build Status](https://travis-ci.org/andmos/BikeshareClient.svg?branch=master)](https://travis-ci.org/andmos/BikeshareClient)
+[![Build Status](https://travis-ci.com/andmos/BikeshareClient.svg?branch=master)](https://travis-ci.org/andmos/BikeshareClient)
 
 [![codecov](https://codecov.io/gh/andmos/BikeshareClient/branch/master/graph/badge.svg)](https://codecov.io/gh/andmos/BikeshareClient)
 
