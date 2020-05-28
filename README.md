@@ -44,4 +44,6 @@ docker run --rm -it -v $(pwd)/src/TestScript/:/scripts  andmos/dotnet-script mai
 
 [![NuGet](https://img.shields.io/nuget/v/BikeshareClient.svg)](https://www.nuget.org/packages/BikeshareClient/)
 
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=andmos/BikeshareClient)](https://dependabot.com)
+
 >[GBFS](https://github.com/NABSA/gbfs) is a standard backed by the North American Bike Share Association ([NABSA](https://nabsa.net/)).
