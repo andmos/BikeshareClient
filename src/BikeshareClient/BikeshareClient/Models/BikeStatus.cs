@@ -18,7 +18,7 @@ namespace BikeshareClient.Models
 			[JsonProperty("is_disabled"), JsonConverter(typeof(IntegerToBoolConverter))] bool disabled)
         {
 			Id = id;
-			Name = name;
+			Name = string.IsNullOrEmpty(name) ? id : name;
 			Latitude = latitude;
 			Longitude = longitude;
 			Reserved = reserved;
