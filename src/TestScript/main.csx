@@ -1,4 +1,4 @@
-#r "nuget: BikeshareClient, 3.2.0"
+#r "nuget: BikeshareClient, 3.2.1"
 
 using BikeshareClient;
 using BikeshareClient.Providers;
