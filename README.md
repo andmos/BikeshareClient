@@ -29,7 +29,7 @@ A simple [dotnet-script](https://github.com/filipw/dotnet-script) test script fo
 Simple build:
 
 ```bash
-docker run --rm -it -v $(pwd):/app microsoft/dotnet:3.1-sdk dotnet pack app/src/BikeshareClient -o /app
+docker run --rm -it -v $(pwd):/app mcr.microsoft.com/dotnet/core/sdk:3.1 dotnet pack app/src/BikeshareClient -o /app
 ```
 
 Run test script:
