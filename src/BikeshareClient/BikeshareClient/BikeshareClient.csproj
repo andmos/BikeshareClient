@@ -2,13 +2,20 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <ReleaseVersion>3.2.1</ReleaseVersion>
-    <VersionPrefix>3.2.1</VersionPrefix>
+    <ReleaseVersion>3.2.3</ReleaseVersion>
+    <VersionPrefix>3.2.3</VersionPrefix>
     <Title>BikeshareClient</Title>
     <Authors>andmos</Authors>
     <Description>Dotnet client for bike share systems implementing the General Bikeshare Feed Specification (GBFS).</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/andmos/BikeshareClient</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/andmos/BikeshareClient</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -25,5 +32,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
   </ItemGroup>
 </Project>
