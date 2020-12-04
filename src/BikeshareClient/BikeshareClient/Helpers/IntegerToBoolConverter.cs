@@ -12,6 +12,11 @@ namespace BikeshareClient.Helpers
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
+            bool isBoolValue;
+            if(Boolean.TryParse(reader.Value.ToString(), out isBoolValue))
+            {
+                return isBoolValue;
+            }
             return reader.Value.ToString() == "1";
         }
 
