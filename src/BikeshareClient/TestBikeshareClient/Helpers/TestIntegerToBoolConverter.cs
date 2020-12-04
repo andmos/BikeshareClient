@@ -57,6 +57,16 @@ namespace TestBikeshareClient.Helpers
         }
 
         [Fact]
+        public void ReadJson_GivenJsonWithStringAsSomethingRandom_DeserializesToFalse()
+        {
+            var jsonString = "{ boolInt : 'something-random' }";
+
+            var testObject = JsonConvert.DeserializeObject<TestObject>(jsonString, _jsonSettings);
+
+            Assert.False(testObject.boolInt);
+        }
+
+        [Fact]
         public void WriteJson_GivenTrueBoolProperty_SerializesToHighInteger() 
         {
             var testObject = new TestObject { boolInt = true };
