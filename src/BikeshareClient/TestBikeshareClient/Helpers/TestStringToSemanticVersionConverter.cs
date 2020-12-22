@@ -17,7 +17,7 @@ namespace TestBikeshareClient.Helpers
             var gbfsObject = JsonConvert.DeserializeObject<GbfsDTO>(File.ReadAllText(TestFile));
 
             Assert.True(gbfsObject.Version.Version.Major == 1);
-            Assert.True(gbfsObject.Version.Version.Minor == 5);
+            Assert.True(gbfsObject.Version.Version.Minor == 1);
         }
 
         [Fact]
