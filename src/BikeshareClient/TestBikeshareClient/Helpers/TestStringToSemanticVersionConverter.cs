@@ -9,7 +9,7 @@ namespace TestBikeshareClient.Helpers
 {
     public class TestStringToSemanticVersionConverter
     {
-        private readonly string TestFile = @"Helpers/TestableGbfsJson.json";
+        private readonly string TestFile = @"Helpers/TestableGbfsJsonV1.json";
 
         [Fact]
         public void ReadJson_GivenValidJSON_ReturnsSemanticVersion()
