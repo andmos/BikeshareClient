@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <ReleaseVersion>3.2.3</ReleaseVersion>
-    <VersionPrefix>3.2.3</VersionPrefix>
+    <ReleaseVersion>3.2.4</ReleaseVersion>
+    <VersionPrefix>3.2.4</VersionPrefix>
     <Title>BikeshareClient</Title>
     <Authors>andmos</Authors>
     <Description>Dotnet client for bike share systems implementing the General Bikeshare Feed Specification (GBFS).</Description>
