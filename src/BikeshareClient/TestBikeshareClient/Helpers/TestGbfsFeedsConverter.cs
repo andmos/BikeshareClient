@@ -9,7 +9,7 @@ namespace TestBikeshareClient.Helpers
 {
     public class TestGbfsFeedsConverter
     {
-		private readonly string TestFile = @"Helpers/TestableGbfsJson.json";
+		private readonly string TestFile = @"Helpers/TestableGbfsJsonV1.json";
 
 		[Fact]
 		public void ReadJson_GivenValidGbfsJsonFile_ShouldReturnFeedsData()
@@ -18,7 +18,7 @@ namespace TestBikeshareClient.Helpers
 
 			Assert.True(gbfsObject.FeedsData.Any());
 		}
-
+		
 		[Fact]
 		public void ReadJson_GivenValidGbfsJsonFile_ShouldReturnFeedsDataWithLanguages()
 		{
