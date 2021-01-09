@@ -50,7 +50,7 @@ namespace TestBikeshareClient.Helpers
         {
             var semantic = new SemanticVersion(1, 2, 3, "build-0001");
 
-            Assert.Equal(semantic.SpecialVersion, "build-0001");
+            Assert.Equal("build-0001", semantic.SpecialVersion);
         }
 
         [Fact]

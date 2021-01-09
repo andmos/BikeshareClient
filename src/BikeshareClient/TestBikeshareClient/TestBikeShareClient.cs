@@ -139,8 +139,9 @@ namespace TestBikeshareClient
 
 
 		[Theory]
-        [InlineData(@"http://coast.socialbicycles.com/opendata/")]
         [InlineData(@"https://gbfs.nextbike.net/maps/gbfs/v1/nextbike_mr/gbfs.json")]
+        [InlineData(@"https://hamilton.socialbicycles.com/opendata/gbfs.json")]
+
         public async Task GetBikeStatusAsync_GivenCorrectBaseUrl_ReturnsBikesStatus(string endpoint)
         {
 			var client = new Client(endpoint);
@@ -151,8 +152,9 @@ namespace TestBikeshareClient
         }
 
 		[Theory]
-        [InlineData(@"http://coast.socialbicycles.com/opendata/gbfs.json")]
         [InlineData(@"https://gbfs.nextbike.net/maps/gbfs/v1/nextbike_mr/gbfs.json")]
+        [InlineData(@"https://hamilton.socialbicycles.com/opendata/gbfs.json")]
+
         public async Task GetBikeStatusAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_ReturnsBikesStatus(string endpoint)
         {
             var client = new Client(endpoint);
@@ -163,8 +165,8 @@ namespace TestBikeshareClient
         }
 
         [Theory]
-        [InlineData(@"http://coast.socialbicycles.com/opendata/gbfs.json")]
         [InlineData(@"https://gbfs.nextbike.net/maps/gbfs/v1/nextbike_mr/gbfs.json")]
+        [InlineData(@"https://hamilton.socialbicycles.com/opendata/gbfs.json")]
         public async Task GetBikeStatusAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_ReturnsValidPropertyValues(string endpoint)
         {
             var client = new Client(endpoint);
