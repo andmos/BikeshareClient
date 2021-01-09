@@ -32,10 +32,7 @@
     <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Helpers\TestableGbfsJson.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Helpers\TestableGbfsJson.json">
+    <Content Include="Helpers\TestableGbfsJsonV1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

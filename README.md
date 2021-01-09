@@ -1,4 +1,4 @@
-BikeShareClient
+BikeshareClient
 ===
 
 Dotnet client for the General Bikeshare Feed Specification ([GBFS](https://github.com/NABSA/gbfs)).
