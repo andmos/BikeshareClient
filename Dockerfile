@@ -4,6 +4,9 @@ ARG VERSION_SUFFIX
 
 WORKDIR /app 
 
+# For SourceLink
+COPY .git .git
+
 COPY src/BikeshareClient .
 RUN dotnet restore
 
