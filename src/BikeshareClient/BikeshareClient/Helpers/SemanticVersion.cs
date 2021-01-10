@@ -48,9 +48,7 @@ namespace BikeshareClient.Helpers
         {
             if (version == null)
             {
-                var foo = "bar";
-                throw new ArgumentNullException("version");
-                
+                throw new ArgumentNullException("version");                
             }
             Version = NormalizeVersionValue(version);
             SpecialVersion = specialVersion ?? String.Empty;
