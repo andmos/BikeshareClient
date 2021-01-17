@@ -139,8 +139,9 @@ namespace TestBikeshareClient
 
 
 		[Theory]
-        [InlineData(@"http://coast.socialbicycles.com/opendata/")]
         [InlineData(@"https://gbfs.nextbike.net/maps/gbfs/v1/nextbike_mr/gbfs.json")]
+        [InlineData(@"https://hamilton.socialbicycles.com/opendata/gbfs.json")]
+
         public async Task GetBikeStatusAsync_GivenCorrectBaseUrl_ReturnsBikesStatus(string endpoint)
         {
 			var client = new Client(endpoint);
@@ -151,8 +152,9 @@ namespace TestBikeshareClient
         }
 
 		[Theory]
-        [InlineData(@"http://coast.socialbicycles.com/opendata/gbfs.json")]
         [InlineData(@"https://gbfs.nextbike.net/maps/gbfs/v1/nextbike_mr/gbfs.json")]
+        [InlineData(@"https://hamilton.socialbicycles.com/opendata/gbfs.json")]
+
         public async Task GetBikeStatusAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_ReturnsBikesStatus(string endpoint)
         {
             var client = new Client(endpoint);
@@ -163,8 +165,8 @@ namespace TestBikeshareClient
         }
 
         [Theory]
-        [InlineData(@"http://coast.socialbicycles.com/opendata/gbfs.json")]
         [InlineData(@"https://gbfs.nextbike.net/maps/gbfs/v1/nextbike_mr/gbfs.json")]
+        [InlineData(@"https://hamilton.socialbicycles.com/opendata/gbfs.json")]
         public async Task GetBikeStatusAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_ReturnsValidPropertyValues(string endpoint)
         {
             var client = new Client(endpoint);
@@ -218,7 +220,7 @@ namespace TestBikeshareClient
 
             var clientRespons = await client.GetStationsStatusAsync();
 
-            Assert.True(clientRespons.Any(s => s.Returning));
+            Assert.Contains(clientRespons, s => s.Returning);
         }
 
         [Theory]
@@ -232,7 +234,7 @@ namespace TestBikeshareClient
 
             var clientRespons = await client.GetStationsStatusAsync();
 
-            Assert.True(clientRespons.Any(s => s.Renting));
+            Assert.Contains(clientRespons, s => s.Returning);
         }
 
         [Theory]
@@ -243,7 +245,7 @@ namespace TestBikeshareClient
 
             var clientResponse = await client.GetStationsStatusAsync();
 
-            Assert.NotNull(clientResponse.FirstOrDefault().LastReported);
+            Assert.NotEqual(default(DateTime), clientResponse.FirstOrDefault().LastReported);
         }
 
         [Theory]
@@ -255,14 +257,14 @@ namespace TestBikeshareClient
             var clientResponse = await client.GetStationsStatusAsync();
             var firstStationStatus = clientResponse.FirstOrDefault();
 
-            Assert.NotNull(firstStationStatus.LastReported);
+            Assert.NotEqual(default(DateTime), firstStationStatus.LastReported);
             Assert.NotEmpty(firstStationStatus.Id);
             Assert.True(firstStationStatus.Installed);
-            Assert.NotNull(firstStationStatus.BikesAvailable);
+            Assert.IsType<int>(firstStationStatus.BikesAvailable);
             Assert.IsType<bool>(firstStationStatus.Renting);
-            Assert.NotNull(firstStationStatus.BikesDisabled);
+            Assert.IsType<int>(firstStationStatus.BikesDisabled);
             Assert.IsType<bool>(firstStationStatus.Returning);
-            Assert.NotNull(firstStationStatus.DocksAvailable);
+            Assert.IsType<int>(firstStationStatus.DocksAvailable);
         }
 
 

@@ -1,8 +1,11 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 as builder
+FROM mcr.microsoft.com/dotnet/sdk:5.0 as builder
 
 ARG VERSION_SUFFIX
 
 WORKDIR /app 
+
+# For SourceLink
+COPY .git .git
 
 COPY src/BikeshareClient .
 RUN dotnet restore
