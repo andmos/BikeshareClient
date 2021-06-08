@@ -8,7 +8,6 @@ namespace TestBikeshareClient.Helpers
 {
     public class TestTrimmingConverter
     {
-
         [Fact]
         public void ReadJson_GivenJsonWithWhiteSpace_TrimsTestProperty() 
         {

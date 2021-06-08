@@ -10,13 +10,11 @@ namespace BikeshareClient
 {
 	public class Client : IBikeshareClient
     {
-		private readonly string _gbfsBaseUrl;
-		private readonly BikeShareDataProvider _bikeShareDataProvider; 
+	    private readonly BikeShareDataProvider _bikeShareDataProvider; 
         
 		public Client(string gbfsBaseUrl, HttpClient httpClient = null)
-        {
-			_gbfsBaseUrl = gbfsBaseUrl;
-			_bikeShareDataProvider = new BikeShareDataProvider(_gbfsBaseUrl, httpClient);
+		{
+			_bikeShareDataProvider = new BikeShareDataProvider(gbfsBaseUrl, httpClient);
 		}
 
 		public async Task<IEnumerable<Feed>> GetAvailableFeedsAsync()

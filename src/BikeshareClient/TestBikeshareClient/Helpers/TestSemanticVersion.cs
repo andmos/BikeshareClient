@@ -12,10 +12,10 @@ namespace TestBikeshareClient.Helpers
         [Fact]
         public void SemanticVersion_GivenValidJSONString_ReturnsSemanticVersion()
         {
-            var json = @"{ Version : ""1.2.3"" }";
+            const string JSON = @"{ Version : ""1.2.3"" }";
             SemanticVersion parsedValue;
 
-            var semanticModel = JsonConvert.DeserializeObject<Dictionary<string, string>>(json).FirstOrDefault();
+            var semanticModel = JsonConvert.DeserializeObject<Dictionary<string, string>>(JSON).FirstOrDefault();
             var semantic = SemanticVersion.TryParse(semanticModel.Value, out parsedValue);
 
             Assert.True(semantic);

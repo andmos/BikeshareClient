@@ -9,9 +9,9 @@ namespace TestBikeshareClient.Helpers
 {
     public class TestGbfsFeedsConverter
     {
-		private readonly string TestFile = @"Helpers/TestableGbfsJsonV1.json";
+	    private const string TestFile = @"Helpers/TestableGbfsJsonV1.json";
 
-		[Fact]
+	    [Fact]
 		public void ReadJson_GivenValidGbfsJsonFile_ShouldReturnFeedsData()
 		{
 			var gbfsObject = JsonConvert.DeserializeObject<GbfsDTO>(File.ReadAllText(TestFile));
