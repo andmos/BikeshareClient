@@ -102,11 +102,22 @@ namespace TestBikeshareClient
         public async Task GetBikeShareData_GivenBaseUrlWithoutVersionAttribute_ReturnsDefaultVersion()
         {
             var defaultVersion = new SemanticVersion("1.0");
-            var dataProvider = new BikeShareDataProvider("http://gbfs.urbansharing.com/trondheim/");
+            var dataProvider = new BikeShareDataProvider("http://gbfs.urbansharing.com/oslovintersykkel.no/");
 
             var gbfsDto = await dataProvider.GetBikeShareData<GbfsDTO>();
 
             Assert.True(Equals(gbfsDto.Version, defaultVersion));
+        }
+
+        [Fact]
+        public async Task GetBikeShareData_GivenBaseUrlWithVersionAttribute_ReturnsCorrecVersion()
+        {
+            var excpectedVersion = new SemanticVersion("2.2");
+            var dataProvider = new BikeShareDataProvider("http://gbfs.urbansharing.com/trondheim/");
+
+            var gbfsDto = await dataProvider.GetBikeShareData<GbfsDTO>();
+
+            Assert.True(Equals(gbfsDto.Version, excpectedVersion));
         }
     }
 }
