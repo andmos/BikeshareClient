@@ -110,7 +110,7 @@ namespace TestBikeshareClient
         }
 
         [Fact]
-        public async Task GetBikeShareData_GivenBaseUrlWithVersionAttribute_ReturnsCorrecVersion()
+        public async Task GetBikeShareData_GivenBaseUrlWithVersionAttribute_ReturnsCorrectVersion()
         {
             var excpectedVersion = new SemanticVersion("2.2");
             var dataProvider = new BikeShareDataProvider("http://gbfs.urbansharing.com/trondheim/");
