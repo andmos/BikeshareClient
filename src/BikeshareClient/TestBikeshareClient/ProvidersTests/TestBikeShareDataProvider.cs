@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Threading.Tasks;
-using BikeshareClient.Providers;
-using BikeshareClient.DTO;
-using Xunit;
 using System.Net.Http;
+using System.Threading.Tasks;
+using BikeshareClient.DTO;
 using BikeshareClient.Helpers;
+using BikeshareClient.Providers;
+using Xunit;
 
-namespace TestBikeshareClient
+namespace TestBikeshareClient.ProvidersTests
 {
     public class TestBikeShareDataProvider
     {

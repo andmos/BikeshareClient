@@ -95,7 +95,7 @@ namespace BikeshareClient.Providers
         private async Task<string> GetResourceUrlFromGbfsDiscoveryFileFeeds(string baseUrl, string resource)
         {
             var gbfsDiscoveryResponse = await GetProviderDtoFromRequest<GbfsDTO>(baseUrl, FindResourceType<GbfsDTO>());
-            return baseUrl = new Uri(
+            return new Uri(
                 gbfsDiscoveryResponse.FeedsData.SelectMany(l => l.Language.Feeds.ToList()).FirstOrDefault(f => f.Name.Equals(resource)).Url).AbsoluteUri;
         }
 
