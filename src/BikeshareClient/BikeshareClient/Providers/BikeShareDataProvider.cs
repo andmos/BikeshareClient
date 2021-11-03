@@ -39,15 +39,15 @@ namespace BikeshareClient.Providers
         {
             switch (default(T))
             {
-                case GbfsDTO gbfsDiscovery:
+                case GbfsDTO _:
                     return new KeyValuePair<string, string>(GbfsDiscovery, "GBFS Discovery");
-                case BikeStatusDTO bikeStatus:
+                case BikeStatusDTO _:
                     return new KeyValuePair<string, string>("free_bike_status", "Bikes");
-                case StationDTO station:
+                case StationDTO _:
                     return new KeyValuePair<string, string>("station_information", "Stations");
-                case StationStatusDTO stationStatus:
+                case StationStatusDTO _:
                     return new KeyValuePair<string, string>("station_status", "Station status");
-                case SystemInformationDTO systemInformation:
+                case SystemInformationDTO _:
                     return new KeyValuePair<string, string>("system_information", "GBFS System information");
                 default:
                     throw new NotSupportedException($"The type {typeof(T).FullName} is not a supported GBFS resource.");
