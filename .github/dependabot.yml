@@ -8,3 +8,10 @@ updates:
   open-pull-requests-limit: 10
   reviewers:
   - andmos
+
+- package-ecosystem: "docker"
+  directory: "/"
+  schedule:
+    interval: "weekly"
+  reviewers:
+  - andmos 
