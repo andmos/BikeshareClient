@@ -20,7 +20,7 @@ namespace BikeshareClient
 		public async Task<IEnumerable<Feed>> GetAvailableFeedsAsync()
 		{
 			var gbfsDiscovery = await _bikeShareDataProvider.GetBikeShareData<GbfsDTO>();
-			return gbfsDiscovery.FeedsData.SelectMany(l => l.Language.Feeds.ToList());
+			return gbfsDiscovery.FeedsData.SelectMany(l => l.Language.Feeds);
 		}
         
 		public async Task<IEnumerable<Language>> GetAvailableLanguagesAsync()
