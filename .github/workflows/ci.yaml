@@ -27,4 +27,4 @@ jobs:
 
       - name: Publish NuGet package
         run: |
-          docker run --rm -t andmos/bikeshareclient dotnet nuget push /app/output/BikeshareClient.*.nupkg -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
+          docker run --rm -t andmos/bikeshareclient dotnet nuget push /app/output/BikeshareClient.*.nupkg -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
