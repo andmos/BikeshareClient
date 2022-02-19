@@ -1,0 +1,30 @@
+name: CI / CD 
+on: 
+  push:
+  workflow_dispatch:
+jobs: 
+  Build-and-publish:
+    name: Build-and-publish
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build BikeshareClient Pre-release package
+        if: ${{ github.ref != 'refs/heads/master' }}
+        run: | 
+          docker build --build-arg VERSION_SUFFIX="--version-suffix dev-${{ github.run_number }}" -t andmos/bikeshareclient .
+
+      - name: Build BikeshareClient Release package
+        if: ${{ github.ref == 'refs/heads/master' }}
+        run: | 
+          docker build -t andmos/bikeshareclient .
+
+      - name: Publish codecov result
+        run: |
+          docker run --rm -v $(pwd):/tmp -t andmos/bikeshareclient cp /app/TestBikeshareClient/coverage.opencover.xml /tmp
+          bash <(curl -s https://codecov.io/bash)
+
+      - name: Publish NuGet package
+        run: |
+          docker run --rm -t andmos/bikeshareclient dotnet nuget push /app/output/BikeshareClient.*.nupkg -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
