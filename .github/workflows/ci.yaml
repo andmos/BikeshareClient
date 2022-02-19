@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build BikeshareClient Pre-release package
-        if: github.event_name == 'pull_request'
+        if: ${{ github.event_name == 'pull_request' }}
         run: | 
           docker build --build-arg VERSION_SUFFIX="--version-suffix dev-${{ github.run_number }}" -t andmos/bikeshareclient .
 
