@@ -30,6 +30,7 @@ namespace BikeshareClient.Models
         public PropulsionType PropulsionType { get; }
 
         public int MaxRangeMeters { get; }
+
         public string Name { get; }
 
         public bool HasMaxRange => MaxRangeMeters > 0;
