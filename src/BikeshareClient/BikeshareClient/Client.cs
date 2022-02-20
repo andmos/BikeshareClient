@@ -53,5 +53,10 @@ namespace BikeshareClient
 			return bikeStatus.BikeStatusData.Bikes;
 		}
 
+        public async Task<IEnumerable<VehicleTypes>> GetVehicleTypesAsync()
+        {
+			var vehicleTypes = await _bikeShareDataProvider.GetBikeShareData<VehicleTypesDTO>();
+			return vehicleTypes.VehiclesTypesData.VehicleTypes;
+        }
     }
 }

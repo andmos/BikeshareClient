@@ -62,6 +62,20 @@ namespace TestBikeshareClient.ProvidersTests
             Assert.NotEqual(DateTime.MinValue, stationDto.LastUpdated);
         }
 
+        [Theory]
+        [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
+        public async Task GetBikeShareData_GivenEmptyBaseUrlAndHttpClientWithValidBaseUrl_ReturnsValidVehicleTypeResponse(string endpoint)
+        {
+            var httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(endpoint);
+            var dataProvider = new BikeShareDataProvider("", httpClient);
+
+            var vehicleTypesDTO = await dataProvider.GetBikeShareData<VehicleTypesDTO>();
+
+            Assert.True(vehicleTypesDTO.TimeToLive != 0);
+            Assert.NotEqual(DateTime.MinValue, vehicleTypesDTO.LastUpdated);
+        }
+
         [Fact]
         public void GetBikeShareData_GivenEmptyBaseUrl_ThrowsArgumentNullException()
         {

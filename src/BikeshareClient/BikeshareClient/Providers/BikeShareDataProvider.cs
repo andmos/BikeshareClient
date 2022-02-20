@@ -37,21 +37,16 @@ namespace BikeshareClient.Providers
 
         private static KeyValuePair<string, string> FindResourceType<T>()
         {
-            switch (default(T))
+            return default(T) switch
             {
-                case GbfsDTO _:
-                    return new KeyValuePair<string, string>(GbfsDiscovery, "GBFS Discovery");
-                case BikeStatusDTO _:
-                    return new KeyValuePair<string, string>("free_bike_status", "Bikes");
-                case StationDTO _:
-                    return new KeyValuePair<string, string>("station_information", "Stations");
-                case StationStatusDTO _:
-                    return new KeyValuePair<string, string>("station_status", "Station status");
-                case SystemInformationDTO _:
-                    return new KeyValuePair<string, string>("system_information", "GBFS System information");
-                default:
-                    throw new NotSupportedException($"The type {typeof(T).FullName} is not a supported GBFS resource.");
-            }
+                GbfsDTO _ => new KeyValuePair<string, string>(GbfsDiscovery, "GBFS Discovery"),
+                BikeStatusDTO _ => new KeyValuePair<string, string>("free_bike_status", "Bikes"),
+                StationDTO _ => new KeyValuePair<string, string>("station_information", "Stations"),
+                StationStatusDTO _ => new KeyValuePair<string, string>("station_status", "Station status"),
+                SystemInformationDTO _ => new KeyValuePair<string, string>("system_information", "GBFS System information"),
+                VehicleTypesDTO _ => new KeyValuePair<string, string>("vehicle_types", "Vehicle Types"),
+                _ => throw new NotSupportedException($"The type {typeof(T).FullName} is not a supported GBFS resource."),
+            };
         }
 
         private async Task<T> GetProviderDtoAsync<T>(KeyValuePair<string, string> resource)
