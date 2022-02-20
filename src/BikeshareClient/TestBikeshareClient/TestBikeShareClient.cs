@@ -329,6 +329,7 @@ namespace TestBikeshareClient
 
         [Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
+        [InlineData(@"https://api.entur.io/mobility/v2/gbfs/boltbergen/gbfs.json")]
         public async Task GetVehicleTypesAsync_GivenBaseUrlWithGbfsJsonAndAvialableVehicleInformation_ReturnsListOfVehicles(string endpoint)
         {
             var client = new Client(endpoint);
@@ -340,6 +341,7 @@ namespace TestBikeshareClient
 
         [Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
+        [InlineData(@"https://api.entur.io/mobility/v2/gbfs/boltbergen/gbfs.json")]
         public async Task GetVehicleTypesAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_ReturnsValidPropertyValues(string endpoint)
         {
             var client = new Client(endpoint);
@@ -348,7 +350,7 @@ namespace TestBikeshareClient
             var firstVehicleType = clientResponse.FirstOrDefault();
 
             Assert.NotEmpty(firstVehicleType.Id);
-            Assert.IsType<int>(firstVehicleType.MaxRangeMeters);
+            Assert.IsType<long>(firstVehicleType.MaxRangeMeters);
             Assert.IsType<VehicleFormFactor>(firstVehicleType.VehicleFormFactor);
             Assert.IsType<PropulsionType>(firstVehicleType.PropulsionType);
             Assert.IsType<string>(firstVehicleType.Name);
@@ -356,6 +358,7 @@ namespace TestBikeshareClient
 
         [Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
+        [InlineData(@"https://api.entur.io/mobility/v2/gbfs/boltbergen/gbfs.json")]
         public async Task GetVehicleTypesAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_ReturnsCorrectHasMaxRangeValue(string endpoint)
         {
             var client = new Client(endpoint);

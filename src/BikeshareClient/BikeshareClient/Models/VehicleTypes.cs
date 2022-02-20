@@ -12,7 +12,7 @@ namespace BikeshareClient.Models
             [JsonProperty("vehicle_type_id")] string id,
             [JsonProperty("form_factor"), JsonConverter(typeof(StringEnumConverter))] VehicleFormFactor vehicleFormFactor,
             [JsonProperty("propulsion_type"), JsonConverter(typeof(StringEnumConverter))] PropulsionType propulsionType,
-            [JsonProperty("max_range_meters")] int maxRangeMeters,
+            [JsonProperty("max_range_meters")] long maxRangeMeters,
             [JsonProperty("name"), JsonConverter(typeof(TrimmingConverter))] string name
             )
         {
@@ -29,7 +29,7 @@ namespace BikeshareClient.Models
 
         public PropulsionType PropulsionType { get; }
 
-        public int MaxRangeMeters { get; }
+        public long MaxRangeMeters { get; }
 
         public string Name { get; }
 
@@ -54,7 +54,7 @@ namespace BikeshareClient.Models
     {
         [EnumMember(Value = "human")]
         Human,
-        [EnumMember(Value = "electric-assist")]
+        [EnumMember(Value = "electric_assist")]
         ElectricAssist,
         [EnumMember(Value = "electric")]
         Electric,
