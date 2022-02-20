@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System;
+using BikeshareClient.Models;
 
 namespace TestBikeshareClient
 {
@@ -324,6 +325,52 @@ namespace TestBikeshareClient
             var clientResponse = await client.GetAvailableLanguagesAsync();
 
             Assert.NotEmpty(clientResponse);
+        }
+
+        [Theory]
+        [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
+        public async Task GetVehicleTypesAsync_GivenBaseUrlWithGbfsJsonAndAvialableVehicleInformation_ReturnsListOfVehicles(string endpoint)
+        {
+            var client = new Client(endpoint);
+
+            var clientResponse = await client.GetVehicleTypesAsync();
+
+            Assert.NotEmpty(clientResponse);
+        }
+
+        [Theory]
+        [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
+        public async Task GetVehicleTypesAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_ReturnsValidPropertyValues(string endpoint)
+        {
+            var client = new Client(endpoint);
+
+            var clientResponse = await client.GetVehicleTypesAsync();
+            var firstVehicleType = clientResponse.FirstOrDefault();
+
+            Assert.NotEmpty(firstVehicleType.Id);
+            Assert.IsType<int>(firstVehicleType.MaxRangeMeters);
+            Assert.IsType<VehicleFormFactor>(firstVehicleType.VehicleFormFactor);
+            Assert.IsType<PropulsionType>(firstVehicleType.PropulsionType);
+            Assert.IsType<string>(firstVehicleType.Name);
+        }
+
+        [Theory]
+        [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
+        public async Task GetVehicleTypesAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_ReturnsCorrectHasMaxRangeValue(string endpoint)
+        {
+            var client = new Client(endpoint);
+
+            var clientResponse = await client.GetVehicleTypesAsync();
+            var firstVehicleType = clientResponse.FirstOrDefault();
+
+            if(firstVehicleType.PropulsionType == PropulsionType.Human)
+            {
+                Assert.False(firstVehicleType.HasMaxRange);
+            }
+            else
+            {
+                Assert.True(firstVehicleType.HasMaxRange);
+            }
         }
 
     }

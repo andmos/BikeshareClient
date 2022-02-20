@@ -42,5 +42,11 @@ namespace BikeshareClient
         /// </summary>
         /// <returns>The available feeds async.</returns>
 		Task<IEnumerable<Language>> GetAvailableLanguagesAsync();
+
+        /// <summary>
+        /// Gets the available vehicle types offered by provider async.
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<VehicleTypes>> GetVehicleTypesAsync();
 	}
 }
