@@ -8,7 +8,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace BikeshareClient.DTO
 {
-	internal readonly struct GbfsDTO
+    internal readonly struct GbfsDTO
     {
         [JsonConstructor]
         public GbfsDTO(
@@ -41,5 +41,5 @@ namespace BikeshareClient.DTO
         }
         public Language Language { get; }
     }
-        
+
 }

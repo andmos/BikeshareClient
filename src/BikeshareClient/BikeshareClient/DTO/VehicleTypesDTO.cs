@@ -33,7 +33,7 @@ namespace BikeshareClient.DTO
     internal struct VehicleTypesData
     {
         [JsonConstructor]
-        public VehicleTypesData([JsonProperty("vehicle_types")] IEnumerable <VehicleTypes> vehicleTypes)
+        public VehicleTypesData([JsonProperty("vehicle_types")] IEnumerable<VehicleTypes> vehicleTypes)
         {
             VehicleTypes = vehicleTypes;
         }

@@ -11,15 +11,15 @@ namespace BikeshareClient.DTO
     {
         [JsonConstructor]
         public StationStatusDTO(
-            [JsonProperty("last_updated"), JsonConverter(typeof(UnixDateTimeConverter))]DateTime lastUpdated, 
+            [JsonProperty("last_updated"), JsonConverter(typeof(UnixDateTimeConverter))] DateTime lastUpdated,
             [JsonProperty("ttl")] int timeToLive,
             [JsonProperty("version"), JsonConverter(typeof(StringToSemanticVersionConverter))] SemanticVersion version,
-            [JsonProperty("data")]StationStatusData stationStatusData)
+            [JsonProperty("data")] StationStatusData stationStatusData)
         {
             LastUpdated = lastUpdated;
             TimeToLive = timeToLive;
             Version = version ?? new SemanticVersion("1.0");
-            StationsStatusData = stationStatusData; 
+            StationsStatusData = stationStatusData;
         }
 
 
@@ -39,7 +39,7 @@ namespace BikeshareClient.DTO
         {
             StationsStatus = stations;
         }
-        
+
         public IEnumerable<StationStatus> StationsStatus { get; }
     }
 }
