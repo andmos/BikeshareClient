@@ -6,7 +6,7 @@ namespace BikeshareClient.Models
 {
     public class Language
     {
-		[JsonConstructor]
+        [JsonConstructor]
         public Language([JsonProperty("feeds")] IEnumerable<Feed> feeds, string name)
         {
             Feeds = feeds;

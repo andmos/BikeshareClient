@@ -10,19 +10,19 @@ namespace TestBikeshareClient
 {
     public class TestBikeShareClient
     {
-		[Theory]
+        [Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
-		[InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/")]
-        [InlineData(@"http://hamilton.socialbicycles.com/opendata/")] 
-		public async Task GetStationsAsync_GivenValidBaseUrl_ReturnsStations(string baseUrl)
-		{
-			var client = new Client(baseUrl);
+        [InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/")]
+        [InlineData(@"http://hamilton.socialbicycles.com/opendata/")]
+        public async Task GetStationsAsync_GivenValidBaseUrl_ReturnsStations(string baseUrl)
+        {
+            var client = new Client(baseUrl);
 
-			var clientResponse = await client.GetStationsAsync();
-			var stations = clientResponse.ToList();
+            var clientResponse = await client.GetStationsAsync();
+            var stations = clientResponse.ToList();
 
-			Assert.True(stations.Any()); 
-		}
+            Assert.True(stations.Any());
+        }
 
         [Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
@@ -45,8 +45,8 @@ namespace TestBikeshareClient
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/")]
         public async Task GetStationsAsync_GivenEmptyBaseUrlAndHttpClientWithValidBaseUrl_ReturnsStations(string baseUrl)
         {
-	        var httpClient = new HttpClient { BaseAddress = new Uri(baseUrl) };
-	        var client = new Client("", httpClient);
+            var httpClient = new HttpClient { BaseAddress = new Uri(baseUrl) };
+            var client = new Client("", httpClient);
 
             var clientResponse = await client.GetStationsAsync();
             var stations = clientResponse.ToList();
@@ -86,7 +86,7 @@ namespace TestBikeshareClient
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
         [InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/")]
         [InlineData(@"https://gbfs.urbansharing.com/oslobysykkel.no/gbfs.json")]
-        public async Task GetStationsAsync_GivenValidBaseUrl_ReturnsStationWithValidPropertyValues(string baseUrl) 
+        public async Task GetStationsAsync_GivenValidBaseUrl_ReturnsStationWithValidPropertyValues(string baseUrl)
         {
             var client = new Client(baseUrl);
 
@@ -115,16 +115,16 @@ namespace TestBikeshareClient
 
         [Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
-		[InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/")]
-        [InlineData(@"http://hamilton.socialbicycles.com/opendata/")] 
-		public async Task GetSystemInformationAsync_GivenValidBaseUrl_ReturnsInformation(string baseUrl)
-		{
-			var client = new Client(baseUrl);
+        [InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/")]
+        [InlineData(@"http://hamilton.socialbicycles.com/opendata/")]
+        public async Task GetSystemInformationAsync_GivenValidBaseUrl_ReturnsInformation(string baseUrl)
+        {
+            var client = new Client(baseUrl);
 
-			var clientResponse = await client.GetSystemInformationAsync();
+            var clientResponse = await client.GetSystemInformationAsync();
 
-			Assert.NotEmpty(clientResponse.Id);
-			Assert.NotEmpty(clientResponse.Name);
+            Assert.NotEmpty(clientResponse.Id);
+            Assert.NotEmpty(clientResponse.Name);
             Assert.NotEmpty(clientResponse.Language);
             Assert.NotEmpty(clientResponse.Email);
             Assert.NotEmpty(clientResponse.TimeZone);
@@ -132,20 +132,20 @@ namespace TestBikeshareClient
         }
 
 
-		[Theory]
+        [Theory]
         [InlineData(@"https://gbfs.nextbike.net/maps/gbfs/v1/nextbike_mr/gbfs.json")]
         [InlineData(@"https://hamilton.socialbicycles.com/opendata/gbfs.json")]
 
         public async Task GetBikeStatusAsync_GivenCorrectBaseUrl_ReturnsBikesStatus(string endpoint)
         {
-			var client = new Client(endpoint);
+            var client = new Client(endpoint);
 
-			var clientRespons = await client.GetBikeStatusAsync();
+            var clientRespons = await client.GetBikeStatusAsync();
 
-			Assert.True(clientRespons.Any());
+            Assert.True(clientRespons.Any());
         }
 
-		[Theory]
+        [Theory]
         [InlineData(@"https://gbfs.nextbike.net/maps/gbfs/v1/nextbike_mr/gbfs.json")]
         [InlineData(@"https://hamilton.socialbicycles.com/opendata/gbfs.json")]
 
@@ -176,19 +176,19 @@ namespace TestBikeshareClient
 
         [Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
-		[InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/")]
+        [InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/")]
         [InlineData(@"https://gbfs.bcycle.com/bcycle_madison/")]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/")]
         public async Task GetStationsStatusAsync_GivenCorrectBaseUrl_ReturnsStationsStatus(string endpoint)
         {
-			var client = new Client(endpoint);
+            var client = new Client(endpoint);
 
-			var clientResponse = await client.GetStationsStatusAsync();
+            var clientResponse = await client.GetStationsStatusAsync();
 
             Assert.True(clientResponse.Any());
         }
 
-		[Theory]
+        [Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
         [InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/gbfs.json")]
         [InlineData(@"https://gbfs.bcycle.com/bcycle_madison/gbfs.json")]
@@ -233,7 +233,7 @@ namespace TestBikeshareClient
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
         [InlineData(@"http://gbfs.urbansharing.com/edinburghcyclehire.com/gbfs.json")]
 
-        public async Task GetStationsStatusAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_ReturnsLastReported(string endpoint) 
+        public async Task GetStationsStatusAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_ReturnsLastReported(string endpoint)
         {
             var client = new Client(endpoint);
 
@@ -263,62 +263,62 @@ namespace TestBikeshareClient
 
 
         [Theory]
-		[InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/gbfs.json")]
+        [InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/gbfs.json")]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/gbfs.json")]
         [InlineData(@"http://gbfs.urbansharing.com/edinburgh-city-bikes/gbfs.json")]
         [InlineData(@"https://gbfs.nextbike.net/maps/gbfs/v1/nextbike_si/gbfs.json")]
-		public async Task GetAvailableFeedsAsync_GivenBaseUrlWithGbfsJson_ReturnsListOfAvailableFeeds(string endpoint)
-		{
-			var client = new Client(endpoint);
+        public async Task GetAvailableFeedsAsync_GivenBaseUrlWithGbfsJson_ReturnsListOfAvailableFeeds(string endpoint)
+        {
+            var client = new Client(endpoint);
 
-			var clientResponse = await client.GetAvailableFeedsAsync();
+            var clientResponse = await client.GetAvailableFeedsAsync();
 
-			Assert.True(clientResponse.Any());
-		}
-  
-		[Theory]
+            Assert.True(clientResponse.Any());
+        }
+
+        [Theory]
         [InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/gbfs.json")]
-		[InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
+        [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/gbfs.json")]
         [InlineData(@"http://gbfs.urbansharing.com/edinburgh-city-bikes/gbfs.json")]
         public async Task GetAvailableLanguagesAsync_GivenBaseUrlWithGbfsJson_ReturnsListOfAvailableLanguages(string endpoint)
-		{
-			var client = new Client(endpoint);
+        {
+            var client = new Client(endpoint);
 
-			var clientResponse = await client.GetAvailableLanguagesAsync();
+            var clientResponse = await client.GetAvailableLanguagesAsync();
 
-			Assert.NotEmpty(clientResponse);
-		}
+            Assert.NotEmpty(clientResponse);
+        }
 
-		[Theory]
+        [Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
         public async Task GetAvailableLanguagesAsync_GivenBaseUrlWithGbfsJson_ReturnsExpectedLanguage(string endpoint)
         {
             var client = new Client(endpoint);
-            
+
             var clientResponse = await client.GetAvailableLanguagesAsync();
 
-			Assert.Equal("nb", clientResponse.First().Name);
+            Assert.Equal("nb", clientResponse.First().Name);
         }
 
-		[Theory]
+        [Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
-		[InlineData(@"http://hamilton.socialbicycles.com/opendata/")]
+        [InlineData(@"http://hamilton.socialbicycles.com/opendata/")]
         [InlineData(@"http://gbfs.urbansharing.com/edinburghcyclehire.com/gbfs.json")]
         [InlineData(@"https://gbfs.nextbike.net/maps/gbfs/v1/nextbike_si/gbfs.json")]
         public async Task GetAvailableLanguagesAsync_GivenBaseUrlWithGbfsJson_ReturnsExpectedFeed(string endpoint)
         {
             var client = new Client(endpoint);
-            
+
             var clientResponse = await client.GetAvailableLanguagesAsync();
 
-			Assert.Contains(clientResponse, f => f.Feeds.Any(n => n.Name.Equals("system_information")));
+            Assert.Contains(clientResponse, f => f.Feeds.Any(n => n.Name.Equals("system_information")));
         }
 
-		[Theory]
-		[InlineData(@"http://hamilton.socialbicycles.com/opendata/")]
+        [Theory]
+        [InlineData(@"http://hamilton.socialbicycles.com/opendata/")]
         [InlineData(@"https://gbfs.nextbike.net/maps/gbfs/v1/nextbike_si/")]
-		public async Task GetAvailableLanguagesAsync_GivenBaseUrlWithoutGbfsJson_ReturnsListOfAvailableLanguages(string endpoint)
+        public async Task GetAvailableLanguagesAsync_GivenBaseUrlWithoutGbfsJson_ReturnsListOfAvailableLanguages(string endpoint)
         {
             var client = new Client(endpoint);
 
@@ -366,7 +366,7 @@ namespace TestBikeshareClient
             var clientResponse = await client.GetVehicleTypesAsync();
             var firstVehicleType = clientResponse.FirstOrDefault();
 
-            if(firstVehicleType.PropulsionType == PropulsionType.Human)
+            if (firstVehicleType.PropulsionType == PropulsionType.Human)
             {
                 Assert.False(firstVehicleType.HasMaxRange);
             }
@@ -375,6 +375,5 @@ namespace TestBikeshareClient
                 Assert.True(firstVehicleType.HasMaxRange);
             }
         }
-
     }
 }
