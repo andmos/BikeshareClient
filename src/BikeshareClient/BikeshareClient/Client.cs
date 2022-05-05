@@ -17,6 +17,11 @@ namespace BikeshareClient
             _bikeShareDataProvider = new BikeShareDataProvider(gbfsBaseUrl, httpClient);
         }
 
+        public Client(HttpClient httpClient)
+        {
+            _bikeShareDataProvider = new BikeShareDataProvider(httpClient);
+        }
+
         public async Task<IEnumerable<Feed>> GetAvailableFeedsAsync()
         {
             var gbfsDiscovery = await _bikeShareDataProvider.GetBikeShareData<GbfsDTO>();

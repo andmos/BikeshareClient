@@ -37,6 +37,19 @@ namespace TestBikeshareClient.ProvidersTests
 
         [Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
+        public async Task GetBikeShareData_GivenHttpClient_ReturnsValidResponse(string endpoint)
+        {
+            var httpClient = new HttpClient {BaseAddress = new Uri(endpoint) };
+            var dataProvider = new BikeShareDataProvider(httpClient);
+
+            var stationDto = await dataProvider.GetBikeShareData<StationDTO>();
+
+            Assert.True(stationDto.TimeToLive != 0);
+            Assert.NotEqual(DateTime.MinValue, stationDto.LastUpdated);
+        }
+
+        [Theory]
+        [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
         public async Task GetBikeShareData_GivenInvalidBaseUrlAndHttpClientWithValidBaseUrl_ReturnsValidResponse(string endpoint)
         {
             var httpClient = new HttpClient { BaseAddress = new Uri(endpoint) };
@@ -86,6 +99,12 @@ namespace TestBikeshareClient.ProvidersTests
         public void GetBikeShareData_GivenEmptyBaseUrlAndHTTPClientWithEmptyBaseUrl_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new BikeShareDataProvider("", new HttpClient()));
+        }
+
+        [Fact]
+        public void GetBikeShareData_GivenEmptyHTTPClientWithEmptyBaseUrl_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new BikeShareDataProvider(new HttpClient()));
         }
 
         [Fact]

@@ -58,6 +58,21 @@ namespace TestBikeshareClient
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
         [InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/")]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/")]
+        public async Task GetStationsAsync_GivenHttpClientWithValidBaseUrl_ReturnsStations(string baseUrl)
+        {
+            var httpClient = new HttpClient { BaseAddress = new Uri(baseUrl) };
+            var client = new Client(httpClient);
+
+            var clientResponse = await client.GetStationsAsync();
+            var stations = clientResponse.ToList();
+
+            Assert.True(stations.Any());
+        }
+
+        [Theory]
+        [InlineData(@"http://gbfs.urbansharing.com/trondheim/")]
+        [InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/")]
+        [InlineData(@"http://hamilton.socialbicycles.com/opendata/")]
         public async Task GetStationsAsync_GivenValidBaseUrl_ReturnsStationsWithAddress(string baseUrl)
         {
             var client = new Client(baseUrl);

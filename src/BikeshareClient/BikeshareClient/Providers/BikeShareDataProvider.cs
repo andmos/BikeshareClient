@@ -30,6 +30,18 @@ namespace BikeshareClient.Providers
             
         }
 
+        public BikeShareDataProvider(HttpClient httpClient)
+        {
+            if (httpClient?.BaseAddress == null)
+            {
+                throw new ArgumentNullException($"HttpClient with GBFS BaseAddress must be set.");
+            }
+
+            _gbfsBaseUrl = httpClient?.BaseAddress?.ToString();
+            
+            _httpClient = httpClient;
+        }
+
         public async Task<T> GetBikeShareData<T>()
         {
             return await GetProviderDtoAsync<T>(FindResourceType<T>());
