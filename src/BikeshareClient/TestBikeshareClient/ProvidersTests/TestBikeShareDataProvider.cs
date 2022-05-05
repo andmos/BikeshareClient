@@ -102,9 +102,15 @@ namespace TestBikeshareClient.ProvidersTests
         }
 
         [Fact]
-        public void GetBikeShareData_GivenEmptyHTTPClientWithEmptyBaseUrl_ThrowsArgumentNullException()
+        public void GetBikeShareData_GivenEmptyHTTPClientWithNoBaseUrl_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new BikeShareDataProvider(new HttpClient()));
+        }
+
+                [Fact]
+        public void GetBikeShareData_GivenEmptyHTTPClientWithStringEmptyBaseUrl_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new BikeShareDataProvider(new HttpClient{BaseAddress = new Uri(string.Empty) }));
         }
 
         [Fact]
