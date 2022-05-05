@@ -3,10 +3,20 @@ using Microsoft.Extensions.DependencyInjection;
 
 public static class ServiceCollectionExtensions
 {
-    public static IHttpClientBuilder AddBikeshareClient(this IServiceCollection services, string baseUrl)
-        => services.AddHttpClient<IBikeshareClient>("GbfsClient", httpClient =>
-        {
-            httpClient.BaseAddress = new Uri(baseUrl);
-            new Client(string.Empty, httpClient);
-        });
+    public static IServiceCollection AddBikeshareClient(this IServiceCollection services, string baseUrl)
+    {
+            services.AddHttpClient("GBFSClient", httpClient =>
+            {
+                httpClient.BaseAddress = new Uri(baseUrl);
+            });
+            
+            services.AddTransient<IBikeshareClient>(provider =>
+            {
+                var clientFactory = provider.GetRequiredService<IHttpClientFactory>();
+                var httpClient = clientFactory.CreateClient("GBFSClient");
+                
+                return new Client("", httpClient);
+            });
+            return services;
+    }
 }
