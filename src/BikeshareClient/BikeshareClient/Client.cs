@@ -10,8 +10,8 @@ namespace BikeshareClient
 {
     public class Client : IBikeshareClient
     {
-        private readonly BikeShareDataProvider _bikeShareDataProvider; 
-        
+        private readonly BikeShareDataProvider _bikeShareDataProvider;
+
         public Client(string gbfsBaseUrl, HttpClient httpClient = null)
         {
             _bikeShareDataProvider = new BikeShareDataProvider(gbfsBaseUrl, httpClient);

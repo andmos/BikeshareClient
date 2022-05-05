@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <ReleaseVersion>3.3.0</ReleaseVersion>
+        <VersionPrefix>3.3.0</VersionPrefix>
+        <Title>BikeshareClient.DependencyInjection</Title>
+        <Authors>andmos</Authors>
+        <Description>
+          Dotnet client for bike share systems implementing the General Bikeshare Feed Specification (GBFS). Includeds extention for IServiceCollection. 
+        </Description>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/andmos/BikeshareClient</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/andmos/BikeshareClient</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    </PropertyGroup>
+    
+    <ItemGroup>
+      <PackageReference Include="BikeshareClient" Version="3.3.0" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+    </ItemGroup>
+</Project>
