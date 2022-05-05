@@ -3,8 +3,8 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <ReleaseVersion>3.3.3</ReleaseVersion>
-        <VersionPrefix>3.3.3</VersionPrefix>
+        <ReleaseVersion>3.3.4</ReleaseVersion>
+        <VersionPrefix>3.3.4</VersionPrefix>
         <Title>BikeshareClient.DependencyInjection</Title>
         <Authors>andmos</Authors>
         <Description>
