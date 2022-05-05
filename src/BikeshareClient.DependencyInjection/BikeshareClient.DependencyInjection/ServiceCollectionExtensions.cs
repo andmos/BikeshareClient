@@ -3,6 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 
 public static class ServiceCollectionExtensions
 {
-    public static IHttpClientBuilder AddFolkeregisterClient(this IServiceCollection services)
+    public static IHttpClientBuilder AddBikeshareClient(this IServiceCollection services)
         => services.AddHttpClient<IBikeshareClient, Client>();
 }
