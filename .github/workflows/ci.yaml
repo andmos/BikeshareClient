@@ -10,12 +10,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Build BikeshareClient Pre-release package
+      - name: Build BikeshareClient Pre-release packages
         if: ${{ github.ref != 'refs/heads/master' }}
         run: | 
           docker build --build-arg VERSION_SUFFIX="--version-suffix dev-${{ github.run_number }}" -t andmos/bikeshareclient .
 
-      - name: Build BikeshareClient Release package
+      - name: Build BikeshareClient Release packages
         if: ${{ github.ref == 'refs/heads/master' }}
         run: | 
           docker build -t andmos/bikeshareclient .
@@ -25,6 +25,6 @@ jobs:
           docker run --rm -v $(pwd):/tmp -t andmos/bikeshareclient cp /app/BikeshareClient/TestBikeshareClient/coverage.opencover.xml /tmp
           bash <(curl -s https://codecov.io/bash)
 
-      - name: Publish NuGet package
+      - name: Publish NuGet packages
         run: |
           docker run --rm -t andmos/bikeshareclient dotnet nuget push /app/output/BikeshareClient.*.nupkg -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
