@@ -22,7 +22,7 @@ jobs:
 
       - name: Publish codecov result
         run: |
-          docker run --rm -v $(pwd):/tmp -t andmos/bikeshareclient cp /app/TestBikeshareClient/coverage.opencover.xml /tmp
+          docker run --rm -v $(pwd):/tmp -t andmos/bikeshareclient cp /app/BikeshareClient/TestBikeshareClient/coverage.opencover.xml /tmp
           bash <(curl -s https://codecov.io/bash)
 
       - name: Publish NuGet package

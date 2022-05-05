@@ -7,10 +7,10 @@ WORKDIR /app
 # For SourceLink
 COPY .git .git
 
-COPY src/BikeshareClient .
-COPY src/BikeshareClient.DependencyInjection .
-RUN dotnet restore
+COPY src/ .
 
-RUN dotnet test TestBikeshareClient/TestBikeshareClient.csproj /p:CollectCoverage=true /p:Threshold=80 /p:ThresholdType=line /p:CoverletOutputFormat=opencover /p:ExcludeByAttribute=ExcludeFromCodeCoverageAttribute
+RUN dotnet restore BikeshareClient/
 
-RUN dotnet pack -c Release -o output $VERSION_SUFFIX
+RUN dotnet test BikeshareClient/TestBikeshareClient/TestBikeshareClient.csproj /p:CollectCoverage=true /p:Threshold=80 /p:ThresholdType=line /p:CoverletOutputFormat=opencover /p:ExcludeByAttribute=ExcludeFromCodeCoverageAttribute
+
+RUN dotnet pack BikeshareClient/ -c Release -o output $VERSION_SUFFIX
