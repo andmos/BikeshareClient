@@ -42,7 +42,9 @@ docker run --rm -it -v $(pwd)/src/TestScript/:/scripts  andmos/dotnet-script mai
 
 [![codecov](https://codecov.io/gh/andmos/BikeshareClient/branch/master/graph/badge.svg)](https://codecov.io/gh/andmos/BikeshareClient)
 
-[![NuGet](https://img.shields.io/nuget/v/BikeshareClient.svg)](https://www.nuget.org/packages/BikeshareClient/)
+[![NuGet BikeshareClient](https://img.shields.io/nuget/v/BikeshareClient.svg)](https://www.nuget.org/packages/BikeshareClient/)
+
+[![NuGet BikeshareClient.DependencyInjection](https://img.shields.io/nuget/v/BikeshareClient.DependencyInjection.svg)](https://www.nuget.org/packages/BikeshareClient.DependencyInjection/)
 
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=andmos/BikeshareClient)](https://dependabot.com)
 
