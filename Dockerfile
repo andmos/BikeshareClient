@@ -1,13 +1,14 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0-bullseye-slim as builder
+FROM mcr.microsoft.com/dotnet/sdk:6.0.202-bullseye-slim as builder
 
 ARG VERSION_SUFFIX
 
-WORKDIR /app 
+WORKDIR /app
 
 # For SourceLink
 COPY .git .git
 
 COPY src/BikeshareClient .
+COPY src/BikeshareClient.DependencyInjection .
 RUN dotnet restore
 
 RUN dotnet test TestBikeshareClient/TestBikeshareClient.csproj /p:CollectCoverage=true /p:Threshold=80 /p:ThresholdType=line /p:CoverletOutputFormat=opencover /p:ExcludeByAttribute=ExcludeFromCodeCoverageAttribute
