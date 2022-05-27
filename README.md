@@ -8,6 +8,8 @@ For all available GBFS systems, [see the system overview from the GBFS project](
 
 Supports the required fields in the GBFS standard for now.
 
+## Basic Usage
+
 ```csharp
 
 // Create the client from a GBFS API URL.
@@ -26,10 +28,23 @@ var statuses = await client.GetStationsStatusAsync();
 
 A simple [dotnet-script](https://github.com/filipw/dotnet-script) test script for the client can be seen [here](https://github.com/andmos/BikeshareClient/blob/master/src/TestScript/main.csx).
 
+## Microsoft.Extensions.DependencyInjection integration
+
+`BikeshareClient` can be registered to `IServiceCollection` by referencing the `BikeshareClient.DependencyInjection` [NuGet package](https://www.nuget.org/packages/BikeshareClient.DependencyInjection/):
+
+```csharp
+using BikeshareClient.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
+
+services.AddBikeshareClient("http://gbfs.urbansharing.com/trondheim/gbfs.json");
+```
+
+## Build and testscript
+
 Simple build:
 
 ```bash
-docker run --rm -it -v $(pwd):/app mcr.microsoft.com/dotnet/sdk:5.0 dotnet pack app/src/BikeshareClient -o /app
+docker run --rm -it -v $(pwd):/app mcr.microsoft.com/dotnet/sdk:6.0 dotnet pack app/src/BikeshareClient -o /app
 ```
 
 Run test script:
