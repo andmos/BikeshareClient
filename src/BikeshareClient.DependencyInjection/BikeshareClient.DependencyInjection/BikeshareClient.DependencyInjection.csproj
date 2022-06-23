@@ -18,7 +18,7 @@
     </PropertyGroup>
     
     <ItemGroup>
-      <PackageReference Include="BikeshareClient" Version="3.3.1" />
+      <PackageReference Include="BikeshareClient" Version="3.3.2" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
       <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
     </ItemGroup>
