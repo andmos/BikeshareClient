@@ -134,16 +134,5 @@ namespace TestBikeshareClient.ProvidersTests
             Assert.True(Equals(gbfsDto.Version, expectedVersion));
         }
 
-        [Fact]
-        public async Task GetBikeShareData_GivenBaseUrlWithVersionAttribute_ReturnsCorrectLastUpdated()
-        {
-            var expectedLastUpdated = new DateTime(2017, 1, 1);
-            var dataProvider = new BikeShareDataProvider("http://gbfs.urbansharing.com/trondheim/");
-
-            var gbfsDto = await dataProvider.GetBikeShareData<GbfsDTO>();
-
-            Assert.True(Equals(gbfsDto.LastUpdated, expectedLastUpdated));
-        }
-
     }
 }
