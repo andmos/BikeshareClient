@@ -44,7 +44,7 @@ services.AddBikeshareClient("http://gbfs.urbansharing.com/trondheim/gbfs.json");
 Simple build:
 
 ```bash
-docker run --rm -it -v $(pwd):/app mcr.microsoft.com/dotnet/sdk:6.0 dotnet pack app/src/BikeshareClient -o /app
+docker run --rm -it -v $(pwd):/app mcr.microsoft.com/dotnet/sdk:7.0 dotnet pack app/src/BikeshareClient -o /app
 ```
 
 Run test script:
