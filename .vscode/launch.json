@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/src/BikeshareClient/TestBikeshareClient/bin/Debug/net6.0/TestBikeshareClient.dll",
+            "program": "${workspaceFolder}/src/BikeshareClient/TestBikeshareClient/bin/Debug/net7.0/TestBikeshareClient.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/BikeshareClient/TestBikeshareClient",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
