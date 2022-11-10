@@ -1,4 +1,8 @@
-bin/
-obj/
-out/
-TestResults/
+# directories
+**/bin/
+**/obj/
+**/out/
+
+# files
+Dockerfile*
+**/*.md
