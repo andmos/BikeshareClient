@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>8.0</LangVersion>
-    <ReleaseVersion>3.3.2</ReleaseVersion>
-    <VersionPrefix>3.3.2</VersionPrefix>
+    <ReleaseVersion>3.3.3</ReleaseVersion>
+    <VersionPrefix>3.3.3</VersionPrefix>
     <Title>BikeshareClient</Title>
     <Authors>andmos</Authors>
     <Description>Dotnet client for bike share systems implementing the General Bikeshare Feed Specification (GBFS).</Description>
@@ -25,7 +25,7 @@
     <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
   </ItemGroup>
 </Project>
