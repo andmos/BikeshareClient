@@ -3,8 +3,8 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <ReleaseVersion>3.3.6</ReleaseVersion>
-        <VersionPrefix>3.3.6</VersionPrefix>
+        <ReleaseVersion>3.3.7</ReleaseVersion>
+        <VersionPrefix>3.3.7</VersionPrefix>
         <Title>BikeshareClient.DependencyInjection</Title>
         <Authors>andmos</Authors>
         <Description>
@@ -18,7 +18,7 @@
     </PropertyGroup>
     
     <ItemGroup>
-      <PackageReference Include="BikeshareClient" Version="3.3.2" />
+      <PackageReference Include="BikeshareClient" Version="3.3.3" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
       <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
     </ItemGroup>
