@@ -329,7 +329,7 @@ namespace TestBikeshareClient
 
         [Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
-        [InlineData(@"https://api.entur.io/mobility/v2/gbfs/boltbergen/gbfs.json")]
+        [InlineData(@"https://gbfs.nextbike.net/maps/gbfs/v2/nextbike_al/gbfs.json")]
         public async Task GetVehicleTypesAsync_GivenBaseUrlWithGbfsJsonAndAvialableVehicleInformation_ReturnsListOfVehicles(string endpoint)
         {
             var client = new Client(endpoint);
