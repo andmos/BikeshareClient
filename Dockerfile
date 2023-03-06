@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:7.0.103-bullseye-slim as builder
+FROM mcr.microsoft.com/dotnet/sdk:7.0.201-bullseye-slim as builder
 
 ARG VERSION_SUFFIX
 
