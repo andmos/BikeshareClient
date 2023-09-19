@@ -193,7 +193,7 @@ namespace TestBikeshareClient
         [InlineData(@"http://gbfs.urbansharing.com/bergen-city-bike/gbfs.json")]
         [InlineData(@"https://gbfs.bcycle.com/bcycle_madison/gbfs.json")]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/gbfs.json")]
-        [InlineData(@"http://gbfs.urbansharing.com/edinburghcyclehire.com/gbfs.json")]
+        [InlineData(@"https://gbfs.urbansharing.com/oslobysykkel.no/gbfs.json")]
         public async Task GetStationsStatusAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_ReturnsStationsStatus(string endpoint)
         {
             var client = new Client(endpoint);
@@ -231,7 +231,7 @@ namespace TestBikeshareClient
 
         [Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
-        [InlineData(@"http://gbfs.urbansharing.com/edinburghcyclehire.com/gbfs.json")]
+        [InlineData(@"https://gbfs.urbansharing.com/oslobysykkel.no/gbfs.json")]
 
         public async Task GetStationsStatusAsync_GivenCorrectBaseUrlWithGbfsDiscoveryFile_ReturnsLastReported(string endpoint)
         {
@@ -265,7 +265,7 @@ namespace TestBikeshareClient
         [Theory]
         [InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/gbfs.json")]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/gbfs.json")]
-        [InlineData(@"http://gbfs.urbansharing.com/edinburgh-city-bikes/gbfs.json")]
+        [InlineData(@"https://gbfs.urbansharing.com/oslobysykkel.no/gbfs.json")]
         [InlineData(@"https://gbfs.nextbike.net/maps/gbfs/v1/nextbike_si/gbfs.json")]
         public async Task GetAvailableFeedsAsync_GivenBaseUrlWithGbfsJson_ReturnsListOfAvailableFeeds(string endpoint)
         {
@@ -280,7 +280,7 @@ namespace TestBikeshareClient
         [InlineData(@"https://gbfs.bcycle.com/bcycle_aventura/gbfs.json")]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/gbfs.json")]
-        [InlineData(@"http://gbfs.urbansharing.com/edinburgh-city-bikes/gbfs.json")]
+        [InlineData(@"https://gbfs.urbansharing.com/oslobysykkel.no/gbfs.json")]
         public async Task GetAvailableLanguagesAsync_GivenBaseUrlWithGbfsJson_ReturnsListOfAvailableLanguages(string endpoint)
         {
             var client = new Client(endpoint);
@@ -304,7 +304,7 @@ namespace TestBikeshareClient
         [Theory]
         [InlineData(@"http://gbfs.urbansharing.com/trondheim/gbfs.json")]
         [InlineData(@"http://hamilton.socialbicycles.com/opendata/")]
-        [InlineData(@"http://gbfs.urbansharing.com/edinburghcyclehire.com/gbfs.json")]
+        [InlineData(@"https://gbfs.urbansharing.com/oslobysykkel.no/gbfs.json")]
         [InlineData(@"https://gbfs.nextbike.net/maps/gbfs/v1/nextbike_si/gbfs.json")]
         public async Task GetAvailableLanguagesAsync_GivenBaseUrlWithGbfsJson_ReturnsExpectedFeed(string endpoint)
         {
