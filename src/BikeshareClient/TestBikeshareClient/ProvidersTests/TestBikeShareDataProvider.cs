@@ -112,17 +112,6 @@ namespace TestBikeshareClient.ProvidersTests
             await Assert.ThrowsAsync<NotImplementedException>(async () => await dataProvider.GetBikeShareData<BikeStatusDTO>());
         }
 
-        // [Fact]
-        // public async Task GetBikeShareData_GivenBaseUrlWithoutVersionAttribute_ReturnsDefaultVersion()
-        // {
-        //     var defaultVersion = new SemanticVersion("1.0");
-        //     var dataProvider = new BikeShareDataProvider("http://gbfs.urbansharing.com/oslovintersykkel.no/");
-
-        //     var gbfsDto = await dataProvider.GetBikeShareData<GbfsDTO>();
-
-        //     Assert.True(Equals(gbfsDto.Version, defaultVersion));
-        // }
-
         [Fact]
         public async Task GetBikeShareData_GivenBaseUrlWithVersionAttribute_ReturnsCorrectVersion()
         {
